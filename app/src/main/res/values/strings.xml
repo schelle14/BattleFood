@@ -14,4 +14,10 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="_Register">Register</string>
+    <string name="_Registration">Registration</string>
+    <string name="_Username">Username</string>
+    <string name="_Email">Email</string>
+    <string name="_Password">Password</string>
+    <string name="_RetypePassword">Retype Password</string>
 </resources>
