@@ -9,6 +9,8 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     public Button buttonReg;
+    public Button buttonLog;
+    public Button buttonTest;
 
     public void init() {
         buttonReg = (Button)findViewById(R.id.buttonReg);
@@ -16,8 +18,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View v) {
 
-                Intent toy = new Intent(MainActivity.this, RegistrationUI.class);
-                startActivity(toy);
+                Intent register_change = new Intent(MainActivity.this, RegistrationUI.class);
+                startActivity(register_change);
+
+            }
+        });
+        buttonLog = (Button)findViewById(R.id.buttonLog);
+        buttonLog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //Intent log_change = new Intent(MainActivity.this, StartUI.class);
+                //startActivity(log_change);
+            }
+
+        });
+
+        buttonTest = (Button)findViewById(R.id.buttonTest);
+        buttonTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent start_change = new Intent(MainActivity.this, StartUI.class);
+                startActivity(start_change);
             }
 
         });
