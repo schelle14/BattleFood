@@ -22,7 +22,7 @@ public class StartUI extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.activity_start_ui);
 
         androidImageButton = (ImageButton) findViewById(R.id.IBfoodtop);
-        //IBfoodtop.setOnClickListener((View.OnClickListener) this);
+        androidImageButton.setOnClickListener((View.OnClickListener) this);
 
 
     }
@@ -31,8 +31,8 @@ public class StartUI extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View v) {
 
         Intent MainActivity = new Intent(StartUI.this,MainActivity.class);
-
         startActivity(MainActivity);
+
             /*v.setBackgroundResource(R.drawable.food_1);
             androidImageButton.setBackgroundResource(R.drawable.food_1);*/
 
