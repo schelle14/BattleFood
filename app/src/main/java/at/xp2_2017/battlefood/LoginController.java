@@ -4,18 +4,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.concurrent.ExecutionException;
+
+public class LoginController extends AppCompatActivity {
 
 
     EditText UsernameEt,PasswordEt;
+    TextView StatusTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login);
+        setContentView(R.layout.loginview);
         UsernameEt = (EditText)findViewById(R.id.etUsername);
         PasswordEt = (EditText)findViewById(R.id.etPassword);
+        StatusTxt = (TextView) findViewById(R.id.txtStatus);
 
         //TODO: instance backgroundworker here singelton
     }
@@ -26,7 +31,18 @@ public class MainActivity extends AppCompatActivity {
         String password = PasswordEt.getText().toString();
         String type = "login";
 
-        BackgorundWorker backgorundWorker = new BackgorundWorker(this);
-        backgorundWorker.execute(type, username, password);
+        LoginModel loginModel = new LoginModel(this);
+        loginModel.execute(username, password);
+
+        String status = "";
+        try {
+            status = loginModel.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        StatusTxt.setText(status);
     }
 }

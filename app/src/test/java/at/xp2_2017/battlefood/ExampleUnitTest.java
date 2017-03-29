@@ -2,6 +2,8 @@ package at.xp2_2017.battlefood;
 
 import org.junit.Test;
 
+import java.util.concurrent.ExecutionException;
+
 import static org.junit.Assert.*;
 
 /**
