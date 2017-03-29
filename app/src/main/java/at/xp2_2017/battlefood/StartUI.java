@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 public class StartUI extends AppCompatActivity implements View.OnClickListener {
@@ -44,12 +43,12 @@ public class StartUI extends AppCompatActivity implements View.OnClickListener {
         {
             case R.id.IBfoodtop:
                 start_ui_state = State.DISHONE;
-                MainActivity = new Intent(StartUI.this,MainActivity.class);
+                MainActivity = new Intent(StartUI.this,Recipe.class);
                 startActivity(MainActivity);
                 break;
             case R.id.IBfoodbottom:
                 start_ui_state = State.DISHTWO;
-                MainActivity = new Intent(StartUI.this,MainActivity.class);
+                MainActivity = new Intent(StartUI.this,Recipe.class);
                 startActivity(MainActivity);
                 break;
             default:

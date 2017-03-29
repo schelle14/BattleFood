@@ -10,7 +10,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public Button buttonReg;
     public Button buttonLog;
-    public Button buttonTest;
 
     public void init() {
         buttonReg = (Button)findViewById(R.id.buttonReg);
@@ -33,18 +32,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
 
         });
-
-        buttonTest = (Button)findViewById(R.id.buttonTest);
-        buttonTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent start_change = new Intent(MainActivity.this, StartUI.class);
-                startActivity(start_change);
-            }
-
-        });
-
     }
 
     @Override
