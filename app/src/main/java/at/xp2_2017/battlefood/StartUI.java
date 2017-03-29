@@ -33,7 +33,7 @@ public class StartUI extends AppCompatActivity implements View.OnClickListener {
         Intent MainActivity = new Intent(StartUI.this,MainActivity.class);
         startActivity(MainActivity);
 
-            /*v.setBackgroundResource(R.drawable.food_1);
+            /* v.setBackgroundResource(R.drawable.food_1);
             androidImageButton.setBackgroundResource(R.drawable.food_1);*/
 
     }
