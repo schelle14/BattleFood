@@ -42,6 +42,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+
                 if (firebaseAuth.getCurrentUser() != null) {
                     //Switch to Mainactivity page
                     txtcheckLogin.setText("Sucess");
@@ -77,6 +78,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         protected void onStart() {
             super.onStart();
             //Adding auth to mAuthlistener
+            FirebaseAuth.getInstance().signOut();
             mAuth.addAuthStateListener(mAuthListener);
         }
 

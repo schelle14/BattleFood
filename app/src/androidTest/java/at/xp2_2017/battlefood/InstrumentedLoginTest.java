@@ -70,12 +70,22 @@ public class InstrumentedLoginTest {
     }
 
     @Test
-    public void testLogin() throws Exception {
+    public void testLoginEmpty() throws Exception {
 
         onView(withId(R.id.etEmailLogin)).perform(typeText(""), closeSoftKeyboard());
         onView(withId(R.id.etPasswordLogin)).perform(typeText("123456"), closeSoftKeyboard());
         onView(withId(R.id.btnLogin)).perform((click()));
         onView(withId(R.id.txtcheckLogin)).check(matches(withText("Fields are empty")));
+
+    }
+
+    @Test
+    public void testLoginFailed() throws Exception {
+
+        onView(withId(R.id.etEmailLogin)).perform(typeText("m@m.at"), closeSoftKeyboard());
+        onView(withId(R.id.etPasswordLogin)).perform(typeText("1234567"), closeSoftKeyboard());
+        onView(withId(R.id.btnLogin)).perform((click()));
+        onView(withId(R.id.txtcheckLogin)).check(matches(withText("Sign in failed")));
 
     }
 
