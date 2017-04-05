@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:scrollbarThumbVertical="@color/colorAccent"
+    android:verticalScrollbarPosition="right"
+    android:overScrollMode="always"
     tools:context="at.xp2_2017.battlefood.UploadRecipeUi">
 
     <EditText
@@ -71,6 +74,7 @@
                 android:background="@android:color/darker_gray"
                 android:ems="10"
                 android:hint="Insert ingredients"
+                android:maxLines="4"
                 android:windowSoftInputMode="adjustPan"/>
 
                 <!--android:imeOptions="actionSend|flagNoEnterAction"
@@ -92,6 +96,7 @@
                 android:background="@android:color/darker_gray"
                 android:ems="10"
                 android:hint="Insert instruction"
+                android:maxLines="4"
                 android:windowSoftInputMode="adjustPan"
                 android:inputType="textMultiLine" />
         </LinearLayout>
@@ -110,36 +115,26 @@
         <TextView
             android:id="@+id/textViewpersons"
             android:layout_width="125dp"
-            android:layout_height="52dp"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
+            android:layout_height="61dp"
             android:text="Number of persons"
-            android:textSize="18sp"
-            tools:layout_editor_absoluteX="17dp"
-            tools:layout_editor_absoluteY="99dp" />
+            android:textSize="18sp"/>
 
         <EditText
             android:id="@+id/editTextadult"
             android:layout_width="60dp"
-            android:layout_height="69dp"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:ems="10"
+            android:layout_height="wrap_content"
+            android:elevation="1dp"
+            android:ems="0"
             android:hint="adult"
-            android:inputType="number"
-            android:textAlignment="viewStart" />
+            android:inputType="number" />
 
         <EditText
             android:id="@+id/editTextchild"
             android:layout_width="60dp"
-            android:layout_height="69dp"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
+            android:layout_height="wrap_content"
             android:ems="10"
             android:hint="child"
-            android:inputType="number"
-            tools:layout_editor_absoluteX="218dp"
-            tools:layout_editor_absoluteY="85dp" />
+            android:inputType="number"/>
 
     </LinearLayout>
 
