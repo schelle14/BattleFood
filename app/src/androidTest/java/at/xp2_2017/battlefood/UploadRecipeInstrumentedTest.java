@@ -34,7 +34,7 @@ public class UploadRecipeInstrumentedTest {
     public ActivityTestRule<UploadRecipeUi> mActivityRule = new ActivityTestRule<>(UploadRecipeUi.class);
 
     @Test
-    public void testUploadButton() throws Exception {
+    public void testSelectPicButton() throws Exception {
 
         onView(withText("Select Pic")).perform(click());
     }
@@ -49,8 +49,8 @@ public class UploadRecipeInstrumentedTest {
         onView(withId(R.id.editTextchild)).perform(typeText("1"),closeSoftKeyboard());
         onView(withId(R.id.editTextchild)).check(matches(withText("1")));
 
-        onView(withId(R.id.editTexttime)).perform(typeText("40min"),closeSoftKeyboard());
-        onView(withId(R.id.editTexttime)).check(matches(withText("40min")));
+        onView(withId(R.id.editTexttime)).perform(typeText("40"),closeSoftKeyboard());
+        onView(withId(R.id.editTexttime)).check(matches(withText("40")));
 
 
     }
@@ -58,14 +58,22 @@ public class UploadRecipeInstrumentedTest {
     @Test
     public void testInpputRecipe() throws Exception
     {
-        onView(withId(R.id.editTextIngredients)).perform(typeText("ekrkre"),closeSoftKeyboard());
-        onView(withId(R.id.editTextIngredients)).check(matches(withText("ekrkre")));
+        onView(withId(R.id.editTextIngredients)).perform(typeText("ekrkre" + "\n" + "abc" + "\n" +
+                "abc" + "\n" + "abc" + "\n" + "abc"),closeSoftKeyboard());
+        onView(withId(R.id.editTextIngredients)).check(matches(withText("ekrkre" + "\n" + "abc" +
+                "\n" + "abc" + "\n" + "abc" + "\n" + "abc")));
 
-        onView(withId(R.id.editTextinstruction)).perform(typeText("dsg"),closeSoftKeyboard());
-        onView(withId(R.id.editTextinstruction)).check(matches(withText("dsg")));
+        onView(withId(R.id.editTextinstruction)).perform(typeText("ekrkre" + "\n" + "abc" + "\n" +
+                "abc" + "\n" + "abc" + "\n" + "abc"),closeSoftKeyboard());
+        onView(withId(R.id.editTextinstruction)).check(matches(withText("ekrkre" + "\n" + "abc" +
+                "\n" + "abc" + "\n" + "abc" + "\n" + "abc")));
 
     }
 
+    @Test
+    public void testUploadButton() throws Exception {
 
+        onView(withText("Upload")).perform(click());
+    }
 
 }
