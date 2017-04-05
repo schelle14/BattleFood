@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="at.xp2_2017.battlefood.UploadRecipeUi">
+
+    <EditText
+        android:id="@+id/editTexttime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        android:ems="10"
+        android:hint="working time"
+        android:inputType="textPersonName"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Select Pic"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="no picture selected"
+        app:layout_constraintLeft_toRightOf="@+id/button"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="342dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:windowSoftInputMode="adjustResize"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTexttime">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ingredients"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/editTextIngredients"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/darker_gray"
+                android:ems="10"
+                android:hint="Insert ingredients"
+
+                android:imeOptions="actionSend|flagNoEnterAction"
+                android:inputType="textMultiLine|textShortMessage|textAutoCorrect|textCapSentences"
+                android:maxLines="2" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Instruction"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/editTextinstruction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/darker_gray"
+                android:ems="10"
+                android:hint="Insert instruction"
+                android:imeOptions="actionSend|flagNoEnterAction"
+                android:inputType="textMultiLine|textShortMessage|textAutoCorrect|textCapSentences"
+
+                android:maxLines="2"
+                tools:layout_editor_absoluteX="35dp"
+                tools:layout_editor_absoluteY="317dp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button">
+
+        <TextView
+            android:id="@+id/textViewpersons"
+            android:layout_width="125dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:text="Number of persons"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="17dp"
+            tools:layout_editor_absoluteY="99dp" />
+
+        <EditText
+            android:id="@+id/editTextadult"
+            android:layout_width="60dp"
+            android:layout_height="69dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:ems="10"
+            android:hint="adult"
+            android:inputType="textPersonName"
+            android:textAlignment="viewStart" />
+
+        <EditText
+            android:id="@+id/editTextchild"
+            android:layout_width="60dp"
+            android:layout_height="69dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:ems="10"
+            android:hint="child"
+            android:inputType="textPersonName"
+            tools:layout_editor_absoluteX="218dp"
+            tools:layout_editor_absoluteY="85dp" />
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
