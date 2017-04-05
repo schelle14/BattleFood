@@ -22,6 +22,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegistrationUI extends AppCompatActivity implements View.OnClickListener {
 
@@ -49,6 +50,8 @@ public class RegistrationUI extends AppCompatActivity implements View.OnClickLis
         mAuth = FirebaseAuth.getInstance();
         btnRegister = (Button) findViewById(R.id.buttonRegister);
         btnRegister.setOnClickListener(this);
+        mProgress = new ProgressDialog(this);
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
     }
 
     @Override
