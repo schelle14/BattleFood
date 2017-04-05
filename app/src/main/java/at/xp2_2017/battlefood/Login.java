@@ -46,7 +46,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                     //Switch to Mainactivity page
                     txtcheckLogin.setText("Sucess");
                     //CHANGE TO REGISTRATION TO START
-                   // startActivity(new Intent(Login.this, RegistrationUI.class));
+                   //startActivity(new Intent(Login.this, RegistrationUI.class));
 
                 }
             }
@@ -58,7 +58,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         String password = etPassword.getText().toString();
         //checks if login is sucessfull
         if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
-            Toast.makeText(Login.this, "Fields are empty", Toast.LENGTH_LONG).show();
+            txtcheckLogin.setText("Fields are empty");
         }
         else
         {
@@ -66,7 +66,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (!task.isSuccessful()) {
-                        Toast.makeText(Login.this, "Sign in failed", Toast.LENGTH_LONG).show();
+                        txtcheckLogin.setText("Sign in failed");
                     }
                 }
             });

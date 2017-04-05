@@ -18,6 +18,7 @@ import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.junit.Assert.*;
@@ -71,10 +72,11 @@ public class InstrumentedLoginTest {
     @Test
     public void testLogin() throws Exception {
 
-        onView(withId(R.id.etEmailLogin)).perform(typeText("m@m.at"), closeSoftKeyboard());
+        onView(withId(R.id.etEmailLogin)).perform(typeText(""), closeSoftKeyboard());
         onView(withId(R.id.etPasswordLogin)).perform(typeText("123456"), closeSoftKeyboard());
         onView(withId(R.id.btnLogin)).perform((click()));
-        onView(withId(R.id.txtcheckLogin)).check(matches(withText("Sucess")));
+        onView(withId(R.id.txtcheckLogin)).check(matches(withText("Fields are empty")));
+
     }
 
 
