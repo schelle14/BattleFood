@@ -87,6 +87,20 @@ public class ExampleInstrumentedTest {
         onView(withId(R.id.editTextRetypePassword)).perform(typeText("abc123"), closeSoftKeyboard());
         onView(withId(R.id.editTextRetypePassword)).check(matches(withText("abc123")));
     }
+    @Test
+    public void testRegistration() throws Exception {
+
+        onView(withText("Register")).perform((click()));
+        onView(withId(R.id.editTextUserName)).perform(typeText("Max"), closeSoftKeyboard());
+        onView(withId(R.id.editTextEmail)).perform(typeText("Max@muster.at"), closeSoftKeyboard());
+        onView(withId(R.id.editTextPassword)).perform(typeText("1234"), closeSoftKeyboard());
+        onView(withId(R.id.editTextRetypePassword)).perform(typeText("1234"), closeSoftKeyboard());
+        onView(withId(R.id.buttonRegister)).perform(click());
+
+
+
+    }
+
 
 
 
