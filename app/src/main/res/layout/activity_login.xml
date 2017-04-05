@@ -57,6 +57,13 @@
         app:layout_constraintTop_toBottomOf="@+id/etPasswordLogin"
         tools:layout_constraintLeft_creator="1"
         app:layout_constraintLeft_toLeftOf="@+id/etPasswordLogin"
-        android:layout_marginLeft="133dp"
-        android:layout_marginTop="-280dp" />
+        android:layout_marginLeft="-13dp"
+        android:layout_marginTop="0dp" />
+
+    <TextView
+        android:id="@+id/txtcheckLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="474dp" />
 </android.support.constraint.ConstraintLayout>
