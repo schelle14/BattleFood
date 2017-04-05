@@ -10,6 +10,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public Button buttonReg;
     public Button buttonLog;
+    public Button buttonRecipe;
 
     public void init() {
         buttonReg = (Button)findViewById(R.id.buttonReg);
@@ -31,6 +32,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //startActivity(log_change);
             }
 
+        });
+
+        buttonRecipe = (Button)findViewById(R.id.buttonrecipe);
+        buttonRecipe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent RecipeUI_Active = new Intent(MainActivity.this,UploadRecipeUi.class);
+                startActivity(RecipeUI_Active);
+
+            }
         });
     }
 

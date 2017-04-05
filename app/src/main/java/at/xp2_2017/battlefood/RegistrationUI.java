@@ -27,7 +27,7 @@ public class RegistrationUI extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         Log.d("ABC", "ABC - test test test");
        // Button clickedButton = (Button) v;
-        Intent StartUI_Active = new Intent(RegistrationUI.this,StartUI.class);
+        Intent StartUI_Active = new Intent(RegistrationUI.this,UploadRecipeUi.class);
         startActivity(StartUI_Active);
     }
 }

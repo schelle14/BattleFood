@@ -23,7 +23,8 @@
         </activity>
         <activity android:name=".StartUI" />
         <activity android:name=".RegistrationUI" />
-        <activity android:name=".Recipe"></activity>
+        <activity android:name=".Recipe" />
+        <activity android:name=".UploadRecipeUi"></activity>
     </application>
 
 </manifest>
