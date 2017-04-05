@@ -24,7 +24,8 @@
         <activity android:name=".StartUI" />
         <activity android:name=".RegistrationUI" />
         <activity android:name=".Recipe" />
-        <activity android:name=".UploadRecipeUi"></activity>
+        <activity android:name=".UploadRecipeUi"
+            android:windowSoftInputMode="adjustPan"/>
     </application>
 
 </manifest>

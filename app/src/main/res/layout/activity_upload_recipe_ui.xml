@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="at.xp2_2017.battlefood.UploadRecipeUi"
-    >
+    tools:context="at.xp2_2017.battlefood.UploadRecipeUi">
 
     <EditText
         android:id="@+id/editTexttime"
@@ -16,8 +15,8 @@
         android:layout_marginTop="16dp"
         android:layout_weight="1"
         android:ems="10"
-        android:hint="working time"
-        android:inputType="textPersonName"
+        android:hint="working time in min"
+        android:inputType="number"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
@@ -50,8 +49,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTexttime"
-        >
+        app:layout_constraintTop_toBottomOf="@+id/editTexttime">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -64,8 +62,7 @@
                 android:layout_height="wrap_content"
                 android:text="Ingredients"
                 android:textSize="24sp"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold"/>
 
             <EditText
                 android:id="@+id/editTextIngredients"
@@ -74,10 +71,11 @@
                 android:background="@android:color/darker_gray"
                 android:ems="10"
                 android:hint="Insert ingredients"
+                android:windowSoftInputMode="adjustPan"/>
 
-                android:imeOptions="actionSend|flagNoEnterAction"
+                <!--android:imeOptions="actionSend|flagNoEnterAction"
                 android:inputType="textMultiLine|textShortMessage|textAutoCorrect|textCapSentences"
-                />
+                android:maxLines="2" />-->
 
             <TextView
                 android:id="@+id/textView7"
@@ -85,8 +83,7 @@
                 android:layout_height="wrap_content"
                 android:text="Instruction"
                 android:textSize="24sp"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold"/>
 
             <EditText
                 android:id="@+id/editTextinstruction"
@@ -95,13 +92,11 @@
                 android:background="@android:color/darker_gray"
                 android:ems="10"
                 android:hint="Insert instruction"
-
-
-                tools:layout_editor_absoluteX="35dp"
-                tools:layout_editor_absoluteY="317dp" />
+                android:windowSoftInputMode="adjustPan"
+                android:inputType="textMultiLine" />
         </LinearLayout>
     </ScrollView>
-    <!--android:inputType="textMultiLine|textShortMessage|textAutoCorrect|textCapSentences"-->
+
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
@@ -131,7 +126,7 @@
             android:layout_marginTop="0dp"
             android:ems="10"
             android:hint="adult"
-            android:inputType="textPersonName"
+            android:inputType="number"
             android:textAlignment="viewStart" />
 
         <EditText
@@ -142,21 +137,10 @@
             android:layout_marginTop="0dp"
             android:ems="10"
             android:hint="child"
-            android:inputType="textPersonName"
+            android:inputType="number"
             tools:layout_editor_absoluteX="218dp"
             tools:layout_editor_absoluteY="85dp" />
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteY="373dp"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
