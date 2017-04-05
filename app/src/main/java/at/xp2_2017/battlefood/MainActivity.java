@@ -6,12 +6,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import static android.R.attr.onClick;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     public Button buttonReg;
     public Button buttonLogin;
+    public Button buttonLogout;
 
     public void init() {
         buttonLogin = (Button) findViewById(R.id.btnLoginStart);
@@ -31,6 +34,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(toy);
             }
 
+        });
+
+        buttonLogout = (Button) findViewById(R.id.btnLogout);
+        buttonLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+            }
         });
 
     }
