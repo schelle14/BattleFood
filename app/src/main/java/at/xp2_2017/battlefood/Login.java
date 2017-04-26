@@ -22,7 +22,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
 
     private EditText etEmail;
     private EditText etPassword;
-    private Button btnLogin;
+    public Button btnLogin;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private TextView txtcheckLogin;

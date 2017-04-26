@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View v) {
 
-                //Intent log_change = new Intent(MainActivity.this, StartUI.class);
-                //startActivity(log_change);
+                Intent log_change = new Intent(MainActivity.this, Login.class);
+                startActivity(log_change);
             }
 
         });
