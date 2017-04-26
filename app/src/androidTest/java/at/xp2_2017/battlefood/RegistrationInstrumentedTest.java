@@ -5,6 +5,9 @@ import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,6 +19,7 @@ import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static java.lang.Thread.sleep;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -38,9 +42,31 @@ public class RegistrationInstrumentedTest {
 
 
     @Test
-    public void testRegistrationLabel() throws Exception {
+    public void testValidRegistration() throws Exception {
 
-        onView(withText("Register")).perform(click());
-        onView(withId(R.id.textViewRegistration)).check(matches(withText("Registration")));
+        onView(withId(R.id.editTextUserName)).perform(typeText("test"),closeSoftKeyboard());
+        onView(withId(R.id.editTextUserName)).check(matches(withText("test")));
+
+        onView(withId(R.id.editTextEmail)).perform(typeText("test@student.tugraz.at"),closeSoftKeyboard());
+        onView(withId(R.id.editTextEmail)).check(matches(withText("test@student.tugraz.at")));
+
+        onView(withId(R.id.editTextPassword)).perform(typeText("1234567"),closeSoftKeyboard());
+        onView(withId(R.id.editTextPassword)).check(matches(withText("1234567")));
+
+        onView(withId(R.id.editTextRetypePassword)).perform(typeText("1234567"),closeSoftKeyboard());
+        onView(withId(R.id.editTextRetypePassword)).check(matches(withText("1234567")));
+
+        onView(withId(R.id.buttonRegister)).perform(click());
+
+        sleep(10000);
+
+        onView(withId(R.id.buttonReg)).check(matches(withText("Register")));
+
+
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        final FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+
+        currentUser.delete();
     }
+
 }
