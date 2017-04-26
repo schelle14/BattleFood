@@ -45,4 +45,9 @@ public class LoginController extends AppCompatActivity {
 
         StatusTxt.setText(status);
     }
+    public static int shit(int x)
+    {
+        int z = x + 5;
+        return z;
+    }
 }

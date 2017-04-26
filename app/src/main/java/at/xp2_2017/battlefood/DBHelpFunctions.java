@@ -82,6 +82,13 @@ public class DBHelpFunctions {
 
     public static void closeConnection(HttpURLConnection httpURLConnection) {
         httpURLConnection.disconnect();
+
+    }
+
+    public boolean isConnectedtoServer(String url, int timeo)
+    {
+
+        return true;
     }
 
 }
