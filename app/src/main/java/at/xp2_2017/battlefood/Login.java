@@ -45,10 +45,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
 
                 if (firebaseAuth.getCurrentUser() != null) {
                     //Switch to Mainactivity page
-                    txtcheckLogin.setText("Sucess");
+                    // txtcheckLogin.setText("Sucess");
                     //CHANGE TO REGISTRATION TO START
-                   startActivity(new Intent(Login.this, MainActivity.class));
-
+                   startActivity(new Intent(Login.this, StartUI.class));
                 }
             }
         };

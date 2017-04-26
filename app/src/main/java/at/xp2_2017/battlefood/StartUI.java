@@ -6,9 +6,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.io.File;
+
 public class StartUI extends AppCompatActivity implements View.OnClickListener {
     private ImageButton IBfoodtop;
     private ImageButton IBfoodbottom;
+    private StorageReference mStorageRef;
 
     ImageButton foodImageButton;
     ImageButton foodImageButton2;
@@ -22,12 +28,14 @@ public class StartUI extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_ui);
 
+        mStorageRef = FirebaseStorage.getInstance().getReference();
+        StorageReference pathReference = mStorageRef.child("images/stars.jpg");
+
         foodImageButton = (ImageButton) findViewById(R.id.IBfoodtop);
         foodImageButton.setOnClickListener(this);
 
         foodImageButton2 = (ImageButton) findViewById(R.id.IBfoodbottom);
         foodImageButton2.setOnClickListener(this);
-
 
     }
     public enum State{

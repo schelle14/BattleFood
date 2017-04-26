@@ -21,6 +21,7 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static java.lang.Thread.sleep;
 import static org.junit.Assert.*;
 
 /**
@@ -75,10 +76,10 @@ public class LoginInstrumentedTest {
     public void testLoginFailed() throws Exception {
 
         onView(withId(R.id.etEmailLogin)).perform(typeText("m@m.at"), closeSoftKeyboard());
-        onView(withId(R.id.etPasswordLogin)).perform(typeText("1234567"), closeSoftKeyboard());
+        onView(withId(R.id.etPasswordLogin)).perform(typeText("12345678"), closeSoftKeyboard());
         onView(withId(R.id.btnLogin)).perform((click()));
+        sleep(2000);
         onView(withId(R.id.txtcheckLogin)).check(matches(withText("Sign in failed")));
-
     }
 
 }

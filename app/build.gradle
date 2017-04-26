@@ -12,8 +12,8 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
-        debug {
-            testCoverageEnabled = true
+        debug{
+            testCoverageEnabled = true;
         }
         release {
             minifyEnabled false
@@ -26,15 +26,17 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude module: 'recyclerview-v7'
     })
     compile 'com.android.support:appcompat-v7:25.3.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:25.3.0'
     compile 'com.google.firebase:firebase-database:10.0.1'
     compile 'com.google.firebase:firebase-auth:10.0.1'
+    compile 'com.google.firebase:firebase-storage:10.0.1'
     testCompile 'junit:junit:4.12'
 }
-
 
 
 apply plugin: 'com.google.gms.google-services'

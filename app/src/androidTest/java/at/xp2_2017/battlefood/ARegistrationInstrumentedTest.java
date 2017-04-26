@@ -28,7 +28,7 @@ import static org.junit.Assert.assertEquals;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 @RunWith(AndroidJUnit4.class)
-public class RegistrationInstrumentedTest {
+public class ARegistrationInstrumentedTest {
     @Test
     public void useAppContext() throws Exception {
         // Context of the app under test.
@@ -40,6 +40,18 @@ public class RegistrationInstrumentedTest {
     @Rule
     public ActivityTestRule<RegistrationUI> mActivityRule = new ActivityTestRule<>(RegistrationUI.class);
 
+    @Test
+    public void testFailureRegistration() throws Exception{
+
+        onView(withId(R.id.editTextUserName)).perform(typeText("test"),closeSoftKeyboard());
+        onView(withId(R.id.editTextEmail)).perform(typeText("test@student.tugraz.at"),closeSoftKeyboard());
+        onView(withId(R.id.editTextPassword)).perform(typeText("123"),closeSoftKeyboard());
+        onView(withId(R.id.editTextRetypePassword)).perform(typeText("123"),closeSoftKeyboard());
+        onView(withId(R.id.buttonRegister)).perform(click());
+        sleep(5000);
+        onView(withId(R.id.buttonRegister)).check(matches(withText("Register")));
+
+    }
 
     @Test
     public void testValidRegistration() throws Exception {
@@ -58,10 +70,9 @@ public class RegistrationInstrumentedTest {
 
         onView(withId(R.id.buttonRegister)).perform(click());
 
-        sleep(10000);
+        sleep(5000);
 
-        onView(withId(R.id.buttonReg)).check(matches(withText("Register")));
-
+        onView(withId(R.id.txtMainA)).check(matches(withText("FoodBattle by Team Tim")));
 
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         final FirebaseUser currentUser = firebaseAuth.getCurrentUser();

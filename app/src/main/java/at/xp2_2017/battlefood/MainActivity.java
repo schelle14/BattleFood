@@ -5,12 +5,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     public Button buttonReg;
     public Button buttonLog;
     public Button buttonUpload;
+    public TextView txtMainActivity;
 
     public void init() {
         buttonReg = (Button)findViewById(R.id.buttonReg);
@@ -50,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        txtMainActivity = (TextView) findViewById(R.id.txtMainA);
 
         init();
     }

@@ -22,7 +22,7 @@
         app:layout_constraintVertical_bias="0.465" />
 
     <TextView
-        android:id="@+id/textViewRegistration"
+        android:id="@+id/txtReg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="0dp"
@@ -47,7 +47,7 @@
         android:hint="@string/_Username"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRegistration"
+        app:layout_constraintTop_toBottomOf="@+id/txtReg"
         app:layout_constraintHorizontal_bias="0.503" />
 
     <EditText
