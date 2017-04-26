@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "592656167463",
+    "firebase_url": "https://battlefood-4912c.firebaseio.com",
+    "project_id": "battlefood-4912c",
+    "storage_bucket": "battlefood-4912c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:592656167463:android:1cbce4172d787193",
+        "android_client_info": {
+          "package_name": "at.xp2_2017.battlefood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "592656167463-cffisikfpqp4j53v20l18kqqdlt3d1vh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "at.xp2_2017.battlefood",
+            "certificate_hash": "7a91ad6f0df30e208babd8b533094b9f3f6a6ed6"
+          }
+        },
+        {
+          "client_id": "592656167463-cqvva9vborgln2qpspscl817uf3n7mn7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqsYPQB6ApGBkMwxc4qlMjDAxLxkh_35s"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "592656167463-cqvva9vborgln2qpspscl817uf3n7mn7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
