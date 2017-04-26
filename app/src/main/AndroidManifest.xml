@@ -25,12 +25,11 @@
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".Login">
-            <intent-filter>
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            </activity>
+        <activity android:name=".StartUI" />
+        <activity android:name=".Recipe"></activity>
+        <activity android:name=".UploadRecipeUi"
+            android:windowSoftInputMode="adjustPan"/>
     </application>
 
 </manifest>

@@ -12,6 +12,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -52,12 +56,7 @@ public class RegistrationUI extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        int ce = v.getId();
-
-        if(ce == R.id.buttonRegister)
-        {
-            startRegister();
-        }
+        startRegister();
     }
 
     private void startRegister() {

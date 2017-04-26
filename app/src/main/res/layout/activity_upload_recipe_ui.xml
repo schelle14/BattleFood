@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbarThumbVertical="@color/colorAccent"
+    android:verticalScrollbarPosition="right"
+    android:overScrollMode="always"
+    tools:context="at.xp2_2017.battlefood.UploadRecipeUi">
+
+    <EditText
+        android:id="@+id/editTexttime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        android:ems="10"
+        android:hint="working time in"
+        android:textAlignment="textEnd"
+        android:inputType="number"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Select Pic"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="no picture selected"
+        app:layout_constraintLeft_toRightOf="@+id/button"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="342dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTexttime"
+        android:layout_marginStart="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ingredients"
+                android:textSize="24sp"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:id="@+id/editTextIngredients"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/darker_gray"
+                android:ems="10"
+                android:hint="Insert ingredients"
+                android:maxLines="4"
+                android:windowSoftInputMode="adjustPan"/>
+
+                <!--android:imeOptions="actionSend|flagNoEnterAction"
+                android:inputType="textMultiLine|textShortMessage|textAutoCorrect|textCapSentences"
+                android:maxLines="2" />-->
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Instruction"
+                android:textSize="24sp"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:id="@+id/editTextinstruction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/darker_gray"
+                android:ems="10"
+                android:hint="Insert instruction"
+                android:maxLines="4"
+                android:windowSoftInputMode="adjustPan"
+                android:inputType="textMultiLine" />
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button"
+        android:layout_marginStart="8dp">
+
+        <TextView
+            android:id="@+id/textViewpersons"
+            android:layout_width="125dp"
+            android:layout_height="61dp"
+            android:text="Number of persons"
+            android:textSize="18sp"/>
+
+        <EditText
+            android:id="@+id/editTextadult"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:elevation="1dp"
+            android:ems="0"
+            android:hint="adult"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/editTextchild"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="child"
+            android:inputType="number"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:text="Upload"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:text="min"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        app:layout_constraintLeft_toRightOf="@+id/editTexttime" />
+
+</android.support.constraint.ConstraintLayout>
