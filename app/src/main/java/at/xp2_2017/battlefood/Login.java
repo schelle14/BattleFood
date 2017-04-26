@@ -47,8 +47,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                     //Switch to Mainactivity page
                     txtcheckLogin.setText("Sucess");
                     //CHANGE TO REGISTRATION TO START
-
-                    startActivity(new Intent(Login.this, MainActivity.class));
+                   startActivity(new Intent(Login.this, MainActivity.class));
 
                 }
             }

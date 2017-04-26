@@ -6,32 +6,44 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+
+import static android.R.attr.onClick;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     public Button buttonReg;
-    public Button buttonLog;
+    public Button buttonLogin;
+    public Button buttonLogout;
 
     public void init() {
+        buttonLogin = (Button) findViewById(R.id.btnLoginStart);
+        buttonLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              Intent login = new Intent(MainActivity.this, Login.class);
+                startActivity(login);
+            }
+        });
         buttonReg = (Button)findViewById(R.id.buttonReg);
         buttonReg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent register_change = new Intent(MainActivity.this, RegistrationUI.class);
-                startActivity(register_change);
-
+                Intent toy = new Intent(MainActivity.this, RegistrationUI.class);
+                startActivity(toy);
             }
+
         });
-        buttonLog = (Button)findViewById(R.id.buttonLog);
-        buttonLog.setOnClickListener(new View.OnClickListener() {
+
+        buttonLogout = (Button) findViewById(R.id.btnLogout);
+        buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //Intent log_change = new Intent(MainActivity.this, StartUI.class);
-                //startActivity(log_change);
+                FirebaseAuth.getInstance().signOut();
             }
-
         });
+
     }
 
     @Override
