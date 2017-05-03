@@ -41,9 +41,7 @@
             android:name=".UploadRecipeUi"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".Menu"
-            android:label="@string/title_activity_menu"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".MenuUI" />
     </application>
 
 </manifest>

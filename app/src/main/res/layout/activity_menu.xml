@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="at.xp2_2017.battlefood.Menu">
+    tools:context="at.xp2_2017.battlefood.MenuUI">
 
     <TextView
         android:id="@+id/txtCapMenu"
