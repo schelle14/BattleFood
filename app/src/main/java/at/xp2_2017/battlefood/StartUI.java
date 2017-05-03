@@ -1,15 +1,14 @@
 package at.xp2_2017.battlefood;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-
-import java.io.File;
 
 public class StartUI extends AppCompatActivity implements View.OnClickListener {
     private ImageButton IBfoodtop;
@@ -18,6 +17,7 @@ public class StartUI extends AppCompatActivity implements View.OnClickListener {
 
     ImageButton foodImageButton;
     ImageButton foodImageButton2;
+    Button menuButton;
 
     State start_ui_state;
     Intent MainActivity;
@@ -37,9 +37,12 @@ public class StartUI extends AppCompatActivity implements View.OnClickListener {
         foodImageButton2 = (ImageButton) findViewById(R.id.IBfoodbottom);
         foodImageButton2.setOnClickListener(this);
 
+        menuButton = (Button)findViewById(R.id.menu);
+        menuButton.setOnClickListener(this);
+
     }
     public enum State{
-        DISHONE, DISHTWO, MENUE
+        DISHONE, DISHTWO, MENU
     }
     @Override
     public void onClick(View v) {
@@ -57,6 +60,11 @@ public class StartUI extends AppCompatActivity implements View.OnClickListener {
             case R.id.IBfoodbottom:
                 start_ui_state = State.DISHTWO;
                 MainActivity = new Intent(StartUI.this,Recipe.class);
+                startActivity(MainActivity);
+                break;
+            case R.id.menu:
+                start_ui_state = State.MENU;
+                MainActivity = new Intent(StartUI.this, MenuUI.class);
                 startActivity(MainActivity);
                 break;
             default:
