@@ -57,15 +57,33 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
     private ImageView imgRecipe;
     private TextView txtPictureSelected;
     private String picturename;
+    public Button menuButton;
+
+
+    public void init() {
+        menuButton = (Button) findViewById(R.id.menu);
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent menu_change = new Intent(UploadRecipeUi.this, MenuUI.class);
+                startActivity(menu_change);
+
+            }
+        });
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_recipe_ui);
 
+        init();
+
         mDatabase = FirebaseDatabase.getInstance().getReference();
         final DatabaseReference recipeRef = mDatabase.child("Recipe");
         mStorage = FirebaseStorage.getInstance().getReference();
+
 
         txtRecipeName = (EditText) findViewById(R.id.txtNameRecipe);
         number_adult = (EditText) findViewById(R.id.editTextadult);
@@ -76,10 +94,6 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
         txtPictureSelected = (TextView) findViewById(R.id.txtPictureSelected);
         imgRecipe = (ImageView) findViewById(R.id.imgRecipePic);
         btnSelectPic = (Button) findViewById(R.id.buttonSelPic);
-
-        final DatabaseReference addChildRecipe = recipeRef.push();
-        picturename = addChildRecipe.getKey();
-
         btnSelectPic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,7 +115,7 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
                 {
                     Toast.makeText(UploadRecipeUi.this, "Please insert all data", Toast.LENGTH_SHORT).show();
                 }else {
-                    //Zu onCreate
+                    DatabaseReference addChildRecipe = recipeRef.push();
                     addChildRecipe.child("Name").setValue(txtRecipeName.getText().toString());
                     addChildRecipe.child("NumberOfAdult").setValue(number_adult.getText().toString());
                     addChildRecipe.child("NumberOfChild").setValue(number_child.getText().toString());
