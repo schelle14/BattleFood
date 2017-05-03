@@ -32,10 +32,6 @@ public class MainInstrumentTest {
     public void testReg() throws Exception {
         onView(withId(R.id.buttonReg)).perform((click()));
     }
-    @Test
-    public void testUp() throws Exception {
-        onView(withId(R.id.buttonUp)).perform((click()));
-    }
 
 
 }

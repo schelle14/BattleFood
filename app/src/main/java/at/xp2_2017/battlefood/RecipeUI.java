@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class UploadRecipeUi extends AppCompatActivity implements View.OnClickListener {
+public class RecipeUI extends AppCompatActivity implements View.OnClickListener{
 
     public Button menuButton;
 
@@ -16,24 +16,21 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onClick(View v) {
 
-                Intent menu_change = new Intent(UploadRecipeUi.this, MenuUI.class);
+                Intent menu_change = new Intent(RecipeUI.this, MenuUI.class);
                 startActivity(menu_change);
 
             }
         });
     }
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_upload_recipe_ui);
+        setContentView(R.layout.activity_recipe);
 
         init();
 
     }
-
     @Override
     public void onClick(View v) {
 

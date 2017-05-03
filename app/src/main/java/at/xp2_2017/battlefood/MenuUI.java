@@ -65,9 +65,7 @@ public class MenuUI extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        txtMainActivity = (TextView) findViewById(R.id.txtMainA);
-
+        setContentView(R.layout.activity_menu);
         init();
     }
 
@@ -76,3 +74,6 @@ public class MenuUI extends AppCompatActivity implements View.OnClickListener {
 
     }
 }
+
+
+
