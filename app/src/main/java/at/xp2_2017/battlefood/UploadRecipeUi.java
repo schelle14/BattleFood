@@ -45,6 +45,8 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
     private EditText txtRecipeName;
     private ImageView imgImageRecipe;
 
+    private StorageReference tStorageRef;
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -62,12 +64,8 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
             imgImageRecipe.setImageBitmap(bitmap);
 
             //Firebase Code
-
-
             cursor.close();
-
         }
-
     }
 
     @Override
@@ -75,10 +73,13 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_recipe_ui);
 
+
+        tStorageRef = FirebaseStorage.getInstance().getReference();
+
         mDatabase = FirebaseDatabase.getInstance().getReference();
         final DatabaseReference recipeRef = mDatabase.child("Recipe");
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReference();
+        //FirebaseStorage storage = FirebaseStorage.getInstance();
+        //StorageReference storageRef = storage.getReference();
 
         txtRecipeName = (EditText) findViewById(R.id.txtNameRecipe);
         number_adult = (EditText) findViewById(R.id.editTextadult);

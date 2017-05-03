@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public Button buttonLog;
     public Button buttonUpload;
     public TextView txtMainActivity;
+    public Button watchBut;
 
     public void init() {
         buttonReg = (Button)findViewById(R.id.buttonReg);
@@ -46,6 +47,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(upload_change);
             }
 
+        });
+
+        watchBut = (Button)findViewById(R.id.buttonWatch);
+        watchBut.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+                Intent watch = new Intent(MainActivity.this, VotesUI.class);
+                startActivity(watch);
+            }
         });
 
     }
