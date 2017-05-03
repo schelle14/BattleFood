@@ -56,7 +56,7 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
     private EditText txtRecipeName;
     private ImageView imgRecipe;
     private TextView txtPictureSelected;
-    private Uri picturename;
+    private String picturename;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +67,6 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
         final DatabaseReference recipeRef = mDatabase.child("Recipe");
         mStorage = FirebaseStorage.getInstance().getReference();
 
-
         txtRecipeName = (EditText) findViewById(R.id.txtNameRecipe);
         number_adult = (EditText) findViewById(R.id.editTextadult);
         number_child = (EditText) findViewById(R.id.editTextchild);
@@ -77,6 +76,10 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
         txtPictureSelected = (TextView) findViewById(R.id.txtPictureSelected);
         imgRecipe = (ImageView) findViewById(R.id.imgRecipePic);
         btnSelectPic = (Button) findViewById(R.id.buttonSelPic);
+
+        final DatabaseReference addChildRecipe = recipeRef.push();
+        picturename = addChildRecipe.getKey();
+
         btnSelectPic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,13 +101,13 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
                 {
                     Toast.makeText(UploadRecipeUi.this, "Please insert all data", Toast.LENGTH_SHORT).show();
                 }else {
-                    DatabaseReference addChildRecipe = recipeRef.push();
+                    //Zu onCreate
                     addChildRecipe.child("Name").setValue(txtRecipeName.getText().toString());
                     addChildRecipe.child("NumberOfAdult").setValue(number_adult.getText().toString());
                     addChildRecipe.child("NumberOfChild").setValue(number_child.getText().toString());
                     addChildRecipe.child("Ingredients").setValue(ingredients.getText().toString());
                     addChildRecipe.child("Instructions").setValue(instructions.getText().toString());
-                    addChildRecipe.child("NameOfPicture").setValue(picturename.);
+                    addChildRecipe.child("NameOfPicture").setValue(addChildRecipe.getKey());
                     Toast.makeText(UploadRecipeUi.this, "Upload successfull", Toast.LENGTH_SHORT).show();
                     Intent toStart = new Intent(UploadRecipeUi.this, StartUI.class);
                     startActivity(toStart);
@@ -123,7 +126,7 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
         super.onActivityResult(requestCode, resultCode, data);
 
             Uri uri = data.getData();
-            picturename = uri;
+
             Bitmap bitmap;
 
             try{
@@ -135,7 +138,7 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
             }
 
         txtPictureSelected.setText(uri.getPath());
-        StorageReference filepath = mStorage.child("images").child(uri.getLastPathSegment());
+        StorageReference filepath = mStorage.child("images").child(picturename);
         filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
