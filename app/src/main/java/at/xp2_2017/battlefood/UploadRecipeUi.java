@@ -1,5 +1,6 @@
 package at.xp2_2017.battlefood;
 
+import android.accessibilityservice.GestureDescription;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -9,6 +10,7 @@ import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -16,17 +18,25 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageException;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import org.w3c.dom.Text;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
@@ -35,6 +45,7 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
 
     private static final int RESULT_LOAD_IMAGE = 1;
     private DatabaseReference mDatabase;
+    private StorageReference mStorage;
     private EditText number_adult;
     private EditText number_child;
     private EditText working_time;
@@ -43,32 +54,9 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
     private Button btnUpload;
     private Button btnSelectPic;
     private EditText txtRecipeName;
-    private ImageView imgImageRecipe;
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && data != null){
-            Uri pickedImage = data.getData();
-            String[] filePath = {MediaStore.Images.Media.DATA};
-            Cursor cursor = getContentResolver().query(pickedImage, filePath, null, null, null);
-            cursor.moveToFirst();
-            String imagePath = cursor.getString(cursor.getColumnIndex(filePath[0]));
-
-            BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-            Bitmap bitmap = BitmapFactory.decodeFile(imagePath, options);
-            imgImageRecipe.setImageBitmap(bitmap);
-
-            //Firebase Code
-
-
-            cursor.close();
-
-        }
-
-    }
+    private ImageView imgRecipe;
+    private TextView txtPictureSelected;
+    private Uri picturename;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,8 +65,8 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         final DatabaseReference recipeRef = mDatabase.child("Recipe");
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReference();
+        mStorage = FirebaseStorage.getInstance().getReference();
+
 
         txtRecipeName = (EditText) findViewById(R.id.txtNameRecipe);
         number_adult = (EditText) findViewById(R.id.editTextadult);
@@ -86,7 +74,8 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
         working_time = (EditText) findViewById(R.id.editTexttime);
         ingredients = (EditText) findViewById(R.id.editTextIngredients);
         instructions = (EditText) findViewById(R.id.editTextinstruction);
-        imgImageRecipe = (ImageView) findViewById(R.id.imgViewRecipe);
+        txtPictureSelected = (TextView) findViewById(R.id.txtPictureSelected);
+        imgRecipe = (ImageView) findViewById(R.id.imgRecipePic);
         btnSelectPic = (Button) findViewById(R.id.buttonSelPic);
         btnSelectPic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,9 +86,6 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
                 startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
             }
         });
-
-
-
 
         btnUpload = (Button) findViewById(R.id.btnUpload);
         btnUpload.setOnClickListener(new View.OnClickListener() {
@@ -118,6 +104,7 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
                     addChildRecipe.child("NumberOfChild").setValue(number_child.getText().toString());
                     addChildRecipe.child("Ingredients").setValue(ingredients.getText().toString());
                     addChildRecipe.child("Instructions").setValue(instructions.getText().toString());
+                    addChildRecipe.child("NameOfPicture").setValue(picturename.);
                     Toast.makeText(UploadRecipeUi.this, "Upload successfull", Toast.LENGTH_SHORT).show();
                     Intent toStart = new Intent(UploadRecipeUi.this, StartUI.class);
                     startActivity(toStart);
@@ -129,5 +116,31 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+            Uri uri = data.getData();
+            picturename = uri;
+            Bitmap bitmap;
+
+            try{
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),uri);
+                imgRecipe.setImageBitmap(bitmap);
+
+            }catch(IOException e) {
+                e.printStackTrace();
+            }
+
+        txtPictureSelected.setText(uri.getPath());
+        StorageReference filepath = mStorage.child("images").child(uri.getLastPathSegment());
+        filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Toast.makeText(UploadRecipeUi.this, "Image upload success", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

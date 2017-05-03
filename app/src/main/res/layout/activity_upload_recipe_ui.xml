@@ -32,7 +32,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Select Pic"
-        app:layout_constraintRight_toLeftOf="@+id/textView5"
+        app:layout_constraintRight_toLeftOf="@+id/txtPictureSelected"
         tools:layout_constraintTop_creator="1"
         tools:layout_constraintRight_creator="1"
         android:layout_marginStart="8dp"
@@ -43,7 +43,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/txtPictureSelected"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="no picture selected"
@@ -78,10 +78,10 @@
         android:orientation="horizontal"
         tools:layout_constraintBottom_creator="1"
         app:layout_constraintBottom_toTopOf="@+id/editTexttime"
-        android:layout_marginStart="2dp"
+        android:layout_marginStart="13dp"
         tools:layout_constraintLeft_creator="1"
         android:layout_marginBottom="8dp"
-        app:layout_constraintLeft_toLeftOf="@+id/imgViewRecipe">
+        app:layout_constraintLeft_toLeftOf="parent">
 
         <TextView
             android:id="@+id/textViewpersons"
@@ -142,9 +142,9 @@
         android:inputType="textPersonName"
         tools:layout_constraintTop_creator="1"
         android:layout_marginStart="5dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/txtPictureSelected"
         tools:layout_constraintLeft_creator="1"
-        app:layout_constraintLeft_toLeftOf="@+id/textView5" />
+        app:layout_constraintLeft_toLeftOf="@+id/txtPictureSelected" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -204,22 +204,21 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/imgViewRecipe"
+        android:id="@+id/imgRecipePic"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="7dp"
-        android:layout_marginEnd="3dp"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="3dp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-        app:layout_constraintLeft_toLeftOf="@+id/buttonSelPic"
-        app:layout_constraintRight_toRightOf="@+id/buttonSelPic"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSelPic"
-        app:srcCompat="@drawable/common_full_open_on_phone"
-        tools:layout_constraintBottom_creator="1"
-        tools:layout_constraintLeft_creator="1"
+        app:srcCompat="@drawable/common_google_signin_btn_icon_dark"
+        tools:layout_constraintTop_creator="1"
         tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1" />
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        android:layout_marginStart="13dp"
+        android:layout_marginEnd="13dp"
+        app:layout_constraintRight_toRightOf="@+id/buttonSelPic"
+        android:layout_marginTop="11dp"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSelPic"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintLeft_toLeftOf="@+id/buttonSelPic" />
 
 </android.support.constraint.ConstraintLayout>
