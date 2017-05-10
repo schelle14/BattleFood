@@ -24,8 +24,8 @@ public class StartUI extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onClick(View v) {
 
-                Intent menu_change = new Intent(StartUI.this, MenuUI.class);
-                startActivity(menu_change);
+                Intent menu_ui = new Intent(StartUI.this, MenuUI.class);
+                startActivity(menu_ui);
 
             }
         });
@@ -35,8 +35,8 @@ public class StartUI extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onClick(View v) {
 
-                Intent foodImage_change = new Intent(StartUI.this, RecipeUI.class);
-                startActivity(foodImage_change);
+                Intent start_ui = new Intent(StartUI.this, StartUI.class);
+                startActivity(start_ui);
 
             }
         });
@@ -46,8 +46,8 @@ public class StartUI extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onClick(View v) {
 
-                Intent foodImage_change = new Intent(StartUI.this, RecipeUI.class);
-                startActivity(foodImage_change);
+                Intent start_ui = new Intent(StartUI.this, StartUI.class);
+                startActivity(start_ui);
 
             }
         });
@@ -62,12 +62,13 @@ public class StartUI extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_ui);
 
+        //Random load pictures
+
+
         mStorageRef = FirebaseStorage.getInstance().getReference();
-        StorageReference pathReference = mStorageRef.child("images/stars.jpg");
+        StorageReference pathReference = mStorageRef.child("images/testpicture1.jpg");
 
         init();
-
-
     }
 
     @Override
