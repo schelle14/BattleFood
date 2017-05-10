@@ -7,13 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     public Button buttonReg;
     public Button buttonLog;
-    public Button buttonUpload;
     public TextView txtMainActivity;
 
     public void init() {
@@ -37,16 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
 
         });
-        buttonUpload = (Button)findViewById(R.id.buttonUp);
-        buttonUpload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                Intent upload_change = new Intent(MainActivity.this, UploadRecipeUi.class);
-                startActivity(upload_change);
-            }
-
-        });
 
     }
 

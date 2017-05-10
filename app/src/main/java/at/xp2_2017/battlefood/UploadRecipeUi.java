@@ -56,12 +56,29 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
     private EditText txtRecipeName;
     private ImageView imgRecipe;
     private TextView txtPictureSelected;
-    private Uri picturename;
+    private String picturename;
+    public Button menuButton;
+
+
+    public void init() {
+        menuButton = (Button) findViewById(R.id.menu);
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent menu_change = new Intent(UploadRecipeUi.this, MenuUI.class);
+                startActivity(menu_change);
+
+            }
+        });
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_recipe_ui);
+
+        init();
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         final DatabaseReference recipeRef = mDatabase.child("Recipe");
@@ -104,7 +121,7 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
                     addChildRecipe.child("NumberOfChild").setValue(number_child.getText().toString());
                     addChildRecipe.child("Ingredients").setValue(ingredients.getText().toString());
                     addChildRecipe.child("Instructions").setValue(instructions.getText().toString());
-                    addChildRecipe.child("NameOfPicture").setValue(picturename.);
+                    addChildRecipe.child("NameOfPicture").setValue(addChildRecipe.getKey());
                     Toast.makeText(UploadRecipeUi.this, "Upload successfull", Toast.LENGTH_SHORT).show();
                     Intent toStart = new Intent(UploadRecipeUi.this, StartUI.class);
                     startActivity(toStart);
@@ -123,7 +140,7 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
         super.onActivityResult(requestCode, resultCode, data);
 
             Uri uri = data.getData();
-            picturename = uri;
+
             Bitmap bitmap;
 
             try{
@@ -135,7 +152,7 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
             }
 
         txtPictureSelected.setText(uri.getPath());
-        StorageReference filepath = mStorage.child("images").child(uri.getLastPathSegment());
+        StorageReference filepath = mStorage.child("images").child(picturename);
         filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
