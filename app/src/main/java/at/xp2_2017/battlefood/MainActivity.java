@@ -1,5 +1,6 @@
 package at.xp2_2017.battlefood;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -43,6 +44,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         txtMainActivity = (TextView) findViewById(R.id.txtMainA);
+
+        //Load not voted recipes
+        BattleFoodApplication application = ((BattleFoodApplication)getApplicationContext());
+
 
         init();
     }
