@@ -37,16 +37,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
 
-        watchBut = (Button)findViewById(R.id.buttonWatch);
-        watchBut.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-
-                Intent watch = new Intent(MainActivity.this, VotesUI.class);
-                startActivity(watch);
-            }
-        });
-
     }
 
     @Override

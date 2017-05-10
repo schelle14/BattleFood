@@ -24,19 +24,10 @@ public class VotesInstrumentTest {
     @Rule
     public ActivityTestRule<VotesUI> mActivityRule = new ActivityTestRule<>(VotesUI.class);
 
-    @Test
-    public void testBackButtonClickable() throws Exception {
-        onView(withId(R.id.buttonBack)).perform((click()));
-    }
-
-    @Test
-    public void testReg() throws Exception {
-        onView(withId(R.id.buttonReg)).perform((click()));
-    }
-    @Test
-    public void testUp() throws Exception {
-        onView(withId(R.id.buttonUp)).perform((click()));
-    }
+//    @Test
+//    public void testBackButtonClickable() throws Exception {
+//        onView(withId(R.id.buttonBack)).perform((click()));
+//    }
 
 
 }
