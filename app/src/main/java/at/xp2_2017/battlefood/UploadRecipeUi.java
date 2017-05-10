@@ -59,7 +59,6 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
     private String picturename;
     public Button menuButton;
 
-
     public void init() {
         menuButton = (Button) findViewById(R.id.menu);
         menuButton.setOnClickListener(new View.OnClickListener() {
@@ -84,6 +83,8 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
         final DatabaseReference recipeRef = mDatabase.child("Recipe");
         mStorage = FirebaseStorage.getInstance().getReference();
 
+       final DatabaseReference addChildRecipe = recipeRef.push();
+        picturename = addChildRecipe.getKey();
 
         txtRecipeName = (EditText) findViewById(R.id.txtNameRecipe);
         number_adult = (EditText) findViewById(R.id.editTextadult);
@@ -115,7 +116,8 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
                 {
                     Toast.makeText(UploadRecipeUi.this, "Please insert all data", Toast.LENGTH_SHORT).show();
                 }else {
-                    DatabaseReference addChildRecipe = recipeRef.push();
+
+
                     addChildRecipe.child("Name").setValue(txtRecipeName.getText().toString());
                     addChildRecipe.child("NumberOfAdult").setValue(number_adult.getText().toString());
                     addChildRecipe.child("NumberOfChild").setValue(number_child.getText().toString());
@@ -152,12 +154,15 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
             }
 
         txtPictureSelected.setText(uri.getPath());
+
         StorageReference filepath = mStorage.child("images").child(picturename);
         filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Toast.makeText(UploadRecipeUi.this, "Image upload success", Toast.LENGTH_SHORT).show();
             }
+
+
         });
     }
 }

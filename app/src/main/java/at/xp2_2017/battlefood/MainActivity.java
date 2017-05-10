@@ -45,10 +45,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         txtMainActivity = (TextView) findViewById(R.id.txtMainA);
 
-        //Load not voted recipes
-        BattleFoodApplication application = ((BattleFoodApplication)getApplicationContext());
-
-
         init();
     }
 
