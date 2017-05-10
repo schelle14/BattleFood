@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -49,11 +50,11 @@ public class BattleAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        ImageView img = new ImageView(contextx);
+        ImageButton img = new ImageButton(contextx);
 
         //SET IMAGE
         img.setImageResource(images_list[position]);
-        img.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        img.setScaleType(ImageButton.ScaleType.CENTER_CROP);
 
         img.setLayoutParams(new GridView.LayoutParams(350,350));
 
