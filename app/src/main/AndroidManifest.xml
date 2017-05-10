@@ -45,7 +45,8 @@
         <activity
             android:name=".VotesUI"
             android:label="@string/title_activity_votes_ui"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+
     </application>
 
 </manifest>
