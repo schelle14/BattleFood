@@ -3,16 +3,24 @@ package at.xp2_2017.battlefood;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-public class StartUI extends AppCompatActivity implements View.OnClickListener {
-    private StorageReference mStorageRef;
+import java.util.Random;
 
+public class StartUI extends AppCompatActivity implements View.OnClickListener {
+    private DatabaseReference mDatabase;
     public ImageButton foodImageButtonTop;
     public ImageButton foodImageButtonBot;
     public Button menuButton;
@@ -64,11 +72,14 @@ public class StartUI extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_ui);
 
-        //Random load pictures
+        //Load random recipes
+        //mStorageRef = FirebaseStorage.getInstance().getReference();
+        //StorageReference pathReference = mStorageRef.child("images/testpicture1.jpg");
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference recipes = mDatabase.child("Recipes");
 
 
-        mStorageRef = FirebaseStorage.getInstance().getReference();
-        StorageReference pathReference = mStorageRef.child("images/testpicture1.jpg");
 
         init();
     }
