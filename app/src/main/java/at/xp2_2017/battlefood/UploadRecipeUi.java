@@ -157,7 +157,7 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
 
         txtPictureSelected.setText(uri.getPath());
 
-        StorageReference filepath = mStorage.child("images").child(picturename);
+        StorageReference filepath = mStorage.child("images").child(picturename + ".jpg");
         filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
