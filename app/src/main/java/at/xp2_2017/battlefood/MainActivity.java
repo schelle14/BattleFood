@@ -1,5 +1,6 @@
 package at.xp2_2017.battlefood;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public Button buttonReg;
     public Button buttonLog;
     public TextView txtMainActivity;
+    public Button watchBut;
 
     public void init() {
         buttonReg = (Button)findViewById(R.id.buttonReg);

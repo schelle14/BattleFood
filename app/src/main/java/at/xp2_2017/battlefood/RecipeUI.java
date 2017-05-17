@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import android.app.Activity;
+import android.widget.ImageView;
+
 public class RecipeUI extends AppCompatActivity implements View.OnClickListener{
 
     public Button menuButton;
@@ -29,6 +32,15 @@ public class RecipeUI extends AppCompatActivity implements View.OnClickListener{
         setContentView(R.layout.activity_recipe);
 
         init();
+        // Get intent data
+        Intent i = getIntent();
+
+        // Selected image id
+        int position = i.getExtras().getInt("id");
+        ImageAdapter imageAdapter = new ImageAdapter(this);
+
+        ImageView imageView = (ImageView) findViewById(R.id.meal_image);
+        imageView.setImageResource(imageAdapter.mThumbIds[position]);
 
     }
     @Override

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="at.xp2_2017.battlefood.RecipeUI">
+    tools:context="at.xp2_2017.battlefood.VotesUI">
 
     <Button
         android:id="@+id/menu"
@@ -12,15 +12,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:layout_marginLeft="0dp"
         android:layout_marginRight="2dp"
         android:layout_marginTop="8dp"
         android:backgroundTint="@android:drawable/screen_background_light_transparent"
-        android:lineSpacingExtra="20sp"
-        android:rotation="90"
         android:text="|||"
-        android:textAlignment="center"
-        android:textSize="30dp"
         android:textStyle="bold"
+        android:rotation="90"
+        android:lineSpacingExtra="20sp"
+        android:textSize="30dp"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -28,40 +29,37 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         tools:layout_constraintBottom_creator="1"
-        tools:layout_constraintRight_creator="1"
-        android:layout_marginEnd="2dp" />
-
-    <ImageView
-        android:id="@+id/meal_image"
-        android:layout_width="319dp"
-        android:layout_height="243dp"
-        android:layout_marginBottom="156dp"
-        android:layout_marginTop="167dp"
-        app:layout_constraintBottom_toBottomOf="@+id/txtIngredients"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_constraintBottom_creator="1"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1"
-        app:layout_constraintVertical_bias="1.0" />
+        tools:layout_constraintRight_creator="1" />
 
     <TextView
-        android:id="@+id/txtIngredients"
-        android:layout_width="204dp"
-        android:layout_height="111dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Ingredients"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/textView"
+        android:layout_width="238dp"
+        android:layout_height="61dp"
+        android:text="Your Votes"
+        android:layout_marginLeft="73dp"
         app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="0.198"
-        app:layout_constraintVertical_bias="0.626"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
+        android:layout_marginTop="68dp"
+        app:layout_constraintHorizontal_bias="0.0" />
+
+    <GridView
+        android:id="@+id/gridview"
+        android:layout_width="363dp"
+        android:layout_height="372dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:horizontalSpacing="20dp"
+        android:numColumns="2"
+        android:verticalSpacing="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.906" />
 </android.support.constraint.ConstraintLayout>

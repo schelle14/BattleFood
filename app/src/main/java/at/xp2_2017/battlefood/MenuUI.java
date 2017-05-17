@@ -10,10 +10,9 @@ import android.widget.TextView;
 public class MenuUI extends AppCompatActivity implements View.OnClickListener {
 
     public Button buttonHome;
-    public Button buttonWatchVotes; //TODO
+    public Button buttonWatchVotes;
     public Button buttonUploadRecipe;
     public Button buttonLogout;
-    public TextView txtMainActivity;
 
     public void init() {
         buttonHome = (Button)findViewById(R.id.HomeBtn);
@@ -26,18 +25,18 @@ public class MenuUI extends AppCompatActivity implements View.OnClickListener {
 
             }
         });
-        /* TODO
+
         buttonWatchVotes = (Button)findViewById(R.id.WatchVotesBtn);
         buttonWatchVotes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent watch_votes_change = new Intent(MenuUI.this, WatchVotesUI.class);
+                Intent watch_votes_change = new Intent(MenuUI.this, VotesUI.class);
                 startActivity(watch_votes_change);
             }
 
         });
-        */
+
         buttonUploadRecipe = (Button)findViewById(R.id.RecipeUpload);
         buttonUploadRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
