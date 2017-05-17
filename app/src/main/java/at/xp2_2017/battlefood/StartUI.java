@@ -23,6 +23,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -73,8 +74,6 @@ public class StartUI extends AppCompatActivity implements View.OnClickListener {
 
     }
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,42 +100,42 @@ public class StartUI extends AppCompatActivity implements View.OnClickListener {
                                 unvoted_recipes.add(snapshot.getKey());
                             }
                         }
-                        Log.d("das ist ein test", recipes.toString());
-                        Log.d("das ist ein test22222", unvoted_recipes.toString());
 
-                        Random rand = new Random();
-                        int n_1;
-                        int n_2;
-                        do {
-                            n_1 = rand.nextInt(((int)dataSnapshot.getChildrenCount()));
-                            n_2 = rand.nextInt((int)dataSnapshot.getChildrenCount());
-                        } while (n_1 != n_2);
+                        Log.d("öalsdjf", unvoted_recipes.toString());
+                        //Shuffle list to random values
+                        long seed = System.nanoTime();
+                        Collections.shuffle(unvoted_recipes, new Random(seed));
 
+                        Log.d("öalsdjfasdfasdfasdf", unvoted_recipes.toString());
 
-                        StorageReference image_reference_1 = mStorage.child("images/" + unvoted_recipes.get(n_1));
-                        StorageReference image_reference_2 = mStorage.child("images/" + unvoted_recipes.get(n_2));
+                        StorageReference image_reference_1 = mStorage.child("images/" + unvoted_recipes.get(0)+".jpg");
+                        final StorageReference image_reference_2 = mStorage.child("images/" + unvoted_recipes.get(1)+".jpg");
 
                         final long TEN_MEGABYTE = 1024 * 1024 * 10;
                         image_reference_1.getBytes(TEN_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                             @Override
                             public void onSuccess(byte[] bytes) {
 
-                                Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                                final Bitmap bmp_1 = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
 
-                                foodImageButtonTop.setImageBitmap(Bitmap.createScaledBitmap(bmp, foodImageButtonTop.getWidth(),
-                                        foodImageButtonTop.getHeight(), false));
+                                image_reference_2.getBytes(TEN_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                                    @Override
+                                    public void onSuccess(byte[] bytes) {
+                                        Bitmap bmp_2 = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+
+                                        foodImageButtonTop.setImageBitmap(Bitmap.createScaledBitmap(bmp_1, foodImageButtonTop.getWidth(),
+                                                foodImageButtonTop.getHeight(), false));
+
+                                        foodImageButtonBot.setImageBitmap(Bitmap.createScaledBitmap(bmp_2, foodImageButtonBot.getWidth(),
+                                                foodImageButtonBot.getHeight(), false));
+
+                                    }
+                                });
+
+
                             }
                         });
-                        image_reference_2.getBytes(TEN_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-                            @Override
-                            public void onSuccess(byte[] bytes) {
-                                Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
 
-                                foodImageButtonBot.setImageBitmap(Bitmap.createScaledBitmap(bmp, foodImageButtonBot.getWidth(),
-                                        foodImageButtonBot.getHeight(), false));
-
-                            }
-                        });
                     }
 
                     @Override
