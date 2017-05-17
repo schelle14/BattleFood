@@ -1,7 +1,9 @@
 package at.xp2_2017.battlefood;
 
 import android.content.Context;
+import android.support.design.widget.FloatingActionButton;
 import android.support.test.InstrumentationRegistry;
+import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
@@ -17,6 +19,8 @@ import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.intent.Intents.intended;
+import static android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static java.lang.Thread.sleep;
@@ -38,12 +42,26 @@ public class RecipeUploadInstrumentedTest {
     }
 
     @Rule
-    public ActivityTestRule<UploadRecipeUi> mActivityRule = new ActivityTestRule<>(UploadRecipeUi.class);
+    public IntentsTestRule<UploadRecipeUi> mActivityRule = new IntentsTestRule<UploadRecipeUi>(UploadRecipeUi.class);
 
     @Test
-    public void testFailureUpload() throws Exception{
-        //TODO Implementation
+    public void testUploadFailure() throws Exception {
+        onView(withId(R.id.editTextinstruction)).perform(typeText("Put some Alkohol into the Bowl"), closeSoftKeyboard());
+        onView(withId(R.id.btnUpload)).perform(click());
+        onView(withId(R.id.btnUpload)).check(matches(withText("Upload")));
+    }
 
+    @Test
+    public void testUploadSuccess() throws Exception {
+        onView(withId(R.id.txtNameRecipe)).perform(typeText("Test Recipe"), closeSoftKeyboard());
+        onView(withId(R.id.editTextadult)).perform(typeText("2"), closeSoftKeyboard());
+        onView(withId(R.id.editTextchild)).perform(typeText("1"), closeSoftKeyboard());
+        onView(withId(R.id.editTexttime)).perform(typeText("12"), closeSoftKeyboard());
+        onView(withId(R.id.editTextIngredients)).perform(typeText("Alkohol"), closeSoftKeyboard());
+        onView(withId(R.id.editTextinstruction)).perform(typeText("Put some Alkohol into the Bowl"),closeSoftKeyboard());
+        onView(withId(R.id.btnUpload)).perform(click());
+        sleep(2000);
+        intended(hasComponent(StartUI.class.getName()));
     }
 
 
