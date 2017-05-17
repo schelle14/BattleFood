@@ -33,6 +33,11 @@ public class StartUI extends AppCompatActivity implements View.OnClickListener {
     public ImageButton foodImageButtonTop;
     public ImageButton foodImageButtonBot;
     public Button menuButton;
+    public FirebaseAuth mAuth;
+    String addToKey;
+    List<String> unvoted_recipes = new ArrayList<>();
+    StorageReference image_reference_1;
+    StorageReference image_reference_2;
 
 
     public void init() {
@@ -53,9 +58,30 @@ public class StartUI extends AppCompatActivity implements View.OnClickListener {
         foodImageButtonTop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                BattleFoodApplication test = ((BattleFoodApplication)getApplicationContext());
 
-                Intent start_ui = new Intent(StartUI.this, StartUI.class);
-                startActivity(start_ui);
+                String user_id = mAuth.getCurrentUser().getUid();
+                final DatabaseReference current_user_db = mDatabase.child("Users").child(user_id);
+
+                DatabaseReference stringOverwrite = current_user_db.child("RecipeKey");
+
+                stringOverwrite.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        addToKey = dataSnapshot.getValue().toString();
+                        addToKey = addToKey.concat(image_reference_1.getName());
+                        current_user_db.child("RecipeKey").setValue(addToKey + ";");
+
+                        Intent start_ui = new Intent(StartUI.this, StartUI.class);
+                        startActivity(start_ui);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
 
             }
         });
@@ -68,6 +94,28 @@ public class StartUI extends AppCompatActivity implements View.OnClickListener {
                 Intent start_ui = new Intent(StartUI.this, StartUI.class);
                 startActivity(start_ui);
 
+                String user_id = mAuth.getCurrentUser().getUid();
+                final DatabaseReference current_user_db = mDatabase.child("Users").child(user_id);
+
+                DatabaseReference stringOverwrite = current_user_db.child("RecipeKey");
+
+                stringOverwrite.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        addToKey = dataSnapshot.getValue().toString();
+                        addToKey = addToKey.concat(image_reference_2.getName());
+                        current_user_db.child("RecipeKey").setValue(addToKey + ";");
+
+                        Intent start_ui = new Intent(StartUI.this, StartUI.class);
+                        startActivity(start_ui);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
             }
         });
 
@@ -82,6 +130,7 @@ public class StartUI extends AppCompatActivity implements View.OnClickListener {
         //Load random recipes
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mStorage = FirebaseStorage.getInstance().getReference();
+        mAuth = FirebaseAuth.getInstance();
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -94,7 +143,7 @@ public class StartUI extends AppCompatActivity implements View.OnClickListener {
                 mDatabase.child("Recipe").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        List<String> unvoted_recipes = new ArrayList<>();
+
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                             if (!recipes.contains(snapshot.getKey())) {
                                 unvoted_recipes.add(snapshot.getKey());
@@ -108,8 +157,8 @@ public class StartUI extends AppCompatActivity implements View.OnClickListener {
 
                         Log.d("öalsdjfasdfasdfasdf", unvoted_recipes.toString());
 
-                        StorageReference image_reference_1 = mStorage.child("images/" + unvoted_recipes.get(0)+".jpg");
-                        final StorageReference image_reference_2 = mStorage.child("images/" + unvoted_recipes.get(1)+".jpg");
+                        image_reference_1 = mStorage.child("images/" + unvoted_recipes.get(0)+".jpg");
+                        image_reference_2 = mStorage.child("images/" + unvoted_recipes.get(1)+".jpg");
 
                         final long TEN_MEGABYTE = 1024 * 1024 * 10;
                         image_reference_1.getBytes(TEN_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {

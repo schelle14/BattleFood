@@ -79,6 +79,7 @@ public class RegistrationUI extends AppCompatActivity implements View.OnClickLis
                         DatabaseReference current_user_db = mDatabase.child(user_id);
                         current_user_db.child("username").setValue(username);
                         current_user_db.child("email").setValue(email);
+                        current_user_db.child("RecipeKey").setValue(";");
                         mProgress.dismiss();
 
                         Intent main = new Intent(RegistrationUI.this, MainActivity.class);
