@@ -35,7 +35,7 @@
         android:id="@+id/textView"
         android:layout_width="238dp"
         android:layout_height="61dp"
-        android:text="TextView"
+        android:text="Your Votes"
         android:layout_marginLeft="73dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginStart="8dp"
@@ -46,7 +46,7 @@
         app:layout_constraintHorizontal_bias="0.0" />
 
     <GridView
-        android:id="@+id/gridView2"
+        android:id="@+id/gridview"
         android:layout_width="363dp"
         android:layout_height="372dp"
         android:layout_marginBottom="8dp"

@@ -16,45 +16,34 @@ public class VotesUI extends AppCompatActivity{
     public Button menuButton;
 
 
-   GridView bgrid;
-    int [] images ={R.drawable.food_1,R.drawable.food_2,R.drawable.food_3,R.drawable.food_4,
-            R.drawable.food_5,R.drawable.food_6,R.drawable.food_7};
-
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_votes_ui);
 
-        bgrid =(GridView) findViewById(R.id.gridView2);
-
-        //Adapter
-        BattleAdapter ada = new BattleAdapter(this,images);
-        bgrid.setAdapter(ada);
-
-        //events
-        bgrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(),"Image: "+ position,Toast.LENGTH_SHORT).show();
-
-//                Intent watch_recipe = new Intent(VotesUI.this, RecipeUI.class);
-//                startActivity(watch_recipe);
-
-
-            }
-        });
-        menuButton = (Button)findViewById(R.id.menu);
+        menuButton = (Button) findViewById(R.id.menu);
         menuButton.setOnClickListener(new View.OnClickListener() {
-        @Override
+            @Override
             public void onClick(View v) {
 
                 Intent menu_change = new Intent(VotesUI.this, MenuUI.class);
                 startActivity(menu_change);
-
             }
         });
 
+
+        GridView gridview = (GridView) findViewById(R.id.gridview);
+        gridview.setAdapter(new ImageAdapter(this));
+
+        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+               // Toast.makeText(VotesUI.this, "" + position, Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getApplicationContext(), RecipeUI.class);
+                // Pass image index
+                i.putExtra("id", position);
+                startActivity(i);
+            }
+        });
     }
 
     /*@Override
