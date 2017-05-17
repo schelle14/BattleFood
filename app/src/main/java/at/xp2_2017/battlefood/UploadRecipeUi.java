@@ -77,6 +77,8 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_recipe_ui);
 
+
+
         init();
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
