@@ -49,6 +49,7 @@ public class StartUI extends AppCompatActivity implements View.OnClickListener {
     public FirebaseAuth.AuthStateListener mAuthListener;
     String addToKey;
 
+    
     public void init() {
         menuButton = (Button) findViewById(R.id.menu);
         menuButton.setOnClickListener(new View.OnClickListener() {
