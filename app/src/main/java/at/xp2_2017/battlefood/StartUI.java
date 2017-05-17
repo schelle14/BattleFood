@@ -40,87 +40,6 @@ public class StartUI extends AppCompatActivity implements View.OnClickListener {
     StorageReference image_reference_1;
     StorageReference image_reference_2;
 
-
-    public void init() {
-        menuButton = (Button)findViewById(R.id.menu);
-        menuButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent menu_ui = new Intent(StartUI.this, MenuUI.class);
-                startActivity(menu_ui);
-
-            }
-        });
-
-        foodImageButtonTop = (ImageButton) findViewById(R.id.IBfoodtop);
-        foodImageButtonTop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                BattleFoodApplication test = ((BattleFoodApplication)getApplicationContext());
-
-                String user_id = mAuth.getCurrentUser().getUid();
-                final DatabaseReference current_user_db = mDatabase.child("Users").child(user_id);
-
-                DatabaseReference stringOverwrite = current_user_db.child("RecipeKey");
-
-                stringOverwrite.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-
-                        addToKey = dataSnapshot.getValue().toString();
-                        addToKey = addToKey.concat(image_reference_1.getName());
-                        current_user_db.child("RecipeKey").setValue(addToKey + ";");
-
-                        Intent start_ui = new Intent(StartUI.this, StartUI.class);
-                        startActivity(start_ui);
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
-
-            }
-        });
-
-        foodImageButtonBot = (ImageButton) findViewById(R.id.IBfoodbottom);
-        foodImageButtonBot.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent start_ui = new Intent(StartUI.this, StartUI.class);
-                startActivity(start_ui);
-
-                String user_id = mAuth.getCurrentUser().getUid();
-                final DatabaseReference current_user_db = mDatabase.child("Users").child(user_id);
-
-                DatabaseReference stringOverwrite = current_user_db.child("RecipeKey");
-
-                stringOverwrite.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-
-                        addToKey = dataSnapshot.getValue().toString();
-                        addToKey = addToKey.concat(image_reference_2.getName());
-                        current_user_db.child("RecipeKey").setValue(addToKey + ";");
-
-                        Intent start_ui = new Intent(StartUI.this, StartUI.class);
-                        startActivity(start_ui);
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
-            }
-        });
-
-
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -133,45 +52,42 @@ public class StartUI extends AppCompatActivity implements View.OnClickListener {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        mDatabase.child("Users/"+user.getUid()+"/RecipeKey").addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabase.child(Constants.FB_USER+"/"+user.getUid()+"/"+Constants.FB_USER_RECIPEKEY).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 final List<String> recipes = Arrays.asList(dataSnapshot.getValue().toString().split(";"));
 
-                mDatabase.child("Recipe").addListenerForSingleValueEvent(new ValueEventListener() {
+                mDatabase.child(Constants.FB_RECIPE).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            if (!recipes.contains(snapshot.getKey()+".jpg")) {
+                            if (!recipes.contains(snapshot.getKey()+ Constants.jpg)) {
                                 unvoted_recipes.add(snapshot.getKey());
                             }
                         }
 
                         if (unvoted_recipes.size() < 2) {
-                            Toast.makeText(StartUI.this, "Not enough recipes to vote!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(StartUI.this, Constants.NOT_ENOUGH_RECIPES, Toast.LENGTH_SHORT).show();
 
-                            Intent menu_ui = new Intent(StartUI.this, MenuUI.class);
-                            startActivity(menu_ui);
-
+                            Intent menu_intent = new Intent(StartUI.this, MenuUI.class);
+                            startActivity(menu_intent);
                         }
                         else {
                             //Shuffle list to random values
                             long seed = System.nanoTime();
                             Collections.shuffle(unvoted_recipes, new Random(seed));
 
-                            image_reference_1 = mStorage.child("images/" + unvoted_recipes.get(0)+".jpg");
-                            image_reference_2 = mStorage.child("images/" + unvoted_recipes.get(1)+".jpg");
+                            image_reference_1 = mStorage.child(Constants.FB_IMAGES+"/" + unvoted_recipes.get(0)+Constants.jpg);
+                            image_reference_2 = mStorage.child(Constants.FB_IMAGES+"/" + unvoted_recipes.get(1)+Constants.jpg);
 
-                            final long TEN_MEGABYTE = 1024 * 1024 * 10;
-                            image_reference_1.getBytes(TEN_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                            image_reference_1.getBytes(Constants.MEGABYTE*10).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                                 @Override
                                 public void onSuccess(byte[] bytes) {
 
                                     final Bitmap bmp_1 = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-
-                                    image_reference_2.getBytes(TEN_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                                    image_reference_2.getBytes(Constants.MEGABYTE*10).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                                         @Override
                                         public void onSuccess(byte[] bytes) {
                                             Bitmap bmp_2 = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
@@ -181,11 +97,8 @@ public class StartUI extends AppCompatActivity implements View.OnClickListener {
 
                                             foodImageButtonBot.setImageBitmap(Bitmap.createScaledBitmap(bmp_2, foodImageButtonBot.getWidth(),
                                                     foodImageButtonBot.getHeight(), false));
-
                                         }
                                     });
-
-
                                 }
                             });
                         }
@@ -202,7 +115,30 @@ public class StartUI extends AppCompatActivity implements View.OnClickListener {
             }
         });
 
-        init();
+        menuButton = (Button)findViewById(R.id.menu);
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent menu_ui = new Intent(StartUI.this, MenuUI.class);
+                startActivity(menu_ui);
+            }
+        });
+
+        foodImageButtonTop = (ImageButton) findViewById(R.id.IBfoodtop);
+        foodImageButtonTop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveImage(image_reference_1.getName());
+            }
+        });
+
+        foodImageButtonBot = (ImageButton) findViewById(R.id.IBfoodbottom);
+        foodImageButtonBot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveImage(image_reference_2.getName());
+            }
+        });
     }
 
     @Override
@@ -210,5 +146,24 @@ public class StartUI extends AppCompatActivity implements View.OnClickListener {
 
     }
 
+    private void saveImage(final String imageName) {
+        final DatabaseReference current_user_db = mDatabase.child(Constants.FB_USER).child(mAuth.getCurrentUser().getUid());
+        DatabaseReference stringOverwrite = current_user_db.child(Constants.FB_USER_RECIPEKEY);
 
+        stringOverwrite.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                addToKey = dataSnapshot.getValue().toString();
+                addToKey = addToKey.concat(imageName);
+                current_user_db.child(Constants.FB_USER_RECIPEKEY).setValue(addToKey + ";");
+
+                Intent start_ui = new Intent(StartUI.this, StartUI.class);
+                startActivity(start_ui);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
 }

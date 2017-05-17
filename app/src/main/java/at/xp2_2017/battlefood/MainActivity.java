@@ -1,6 +1,5 @@
 package at.xp2_2017.battlefood;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,24 +19,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonReg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent register_change = new Intent(MainActivity.this, RegistrationUI.class);
-                startActivity(register_change);
-
+                Intent registration_intent = new Intent(MainActivity.this, RegistrationUI.class);
+                startActivity(registration_intent);
             }
         });
         buttonLog = (Button)findViewById(R.id.buttonLog);
         buttonLog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent log_change = new Intent(MainActivity.this, Login.class);
-                startActivity(log_change);
+                Intent login_intent = new Intent(MainActivity.this, Login.class);
+                startActivity(login_intent);
             }
-
         });
-
-
     }
 
     @Override
@@ -51,6 +44,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-
     }
 }

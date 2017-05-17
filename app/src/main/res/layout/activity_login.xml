@@ -27,12 +27,13 @@
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
+        android:text="test1@test.com"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtMainA"
         tools:layout_constraintLeft_creator="1"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1" />
 
     <EditText
         android:id="@+id/etPasswordLogin"
@@ -41,12 +42,13 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
+        android:text="test123"
+        app:layout_constraintLeft_toLeftOf="@+id/etEmailLogin"
         app:layout_constraintRight_toRightOf="@+id/etEmailLogin"
         app:layout_constraintTop_toBottomOf="@+id/etEmailLogin"
         tools:layout_constraintLeft_creator="1"
-        app:layout_constraintLeft_toLeftOf="@+id/etEmailLogin" />
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1" />
 
     <Button
         android:id="@+id/btnLogin"

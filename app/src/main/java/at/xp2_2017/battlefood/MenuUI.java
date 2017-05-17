@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 public class MenuUI extends AppCompatActivity implements View.OnClickListener {
 
@@ -19,10 +18,8 @@ public class MenuUI extends AppCompatActivity implements View.OnClickListener {
         buttonHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent start_change = new Intent(MenuUI.this, StartUI.class);
-                startActivity(start_change);
-
+                Intent start_intent = new Intent(MenuUI.this, StartUI.class);
+                startActivity(start_intent);
             }
         });
 
@@ -30,9 +27,8 @@ public class MenuUI extends AppCompatActivity implements View.OnClickListener {
         buttonWatchVotes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent watch_votes_change = new Intent(MenuUI.this, VotesUI.class);
-                startActivity(watch_votes_change);
+                Intent votes_intent = new Intent(MenuUI.this, VotesUI.class);
+                startActivity(votes_intent);
             }
 
         });
@@ -41,9 +37,8 @@ public class MenuUI extends AppCompatActivity implements View.OnClickListener {
         buttonUploadRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent upload_change = new Intent(MenuUI.this, UploadRecipeUi.class);
-                startActivity(upload_change);
+                Intent upload_receipe_intent = new Intent(MenuUI.this, UploadRecipeUi.class);
+                startActivity(upload_receipe_intent);
             }
 
         });
@@ -70,7 +65,6 @@ public class MenuUI extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-
     }
 }
 

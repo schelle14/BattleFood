@@ -9,8 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -44,9 +42,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
 
                 if (firebaseAuth.getCurrentUser() != null) {
-                    //Switch to Mainactivity page
-                    // txtcheckLogin.setText("Sucess");
-                    //CHANGE TO REGISTRATION TO START
                     BattleFoodApplication test = ((BattleFoodApplication)getApplicationContext());
                     test.setUserKey(mAuth.getCurrentUser().getUid());
                     startActivity(new Intent(Login.this, StartUI.class));
@@ -60,7 +55,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         String password = etPassword.getText().toString();
         //checks if login is sucessfull
         if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
-            txtcheckLogin.setText("Fields are empty");
+            txtcheckLogin.setText(Constants.FIELDS_EMPTY);
         }
         else
         {
@@ -68,7 +63,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (!task.isSuccessful()) {
-                        txtcheckLogin.setText("Sign in failed");
+                        txtcheckLogin.setText(Constants.SIGN_IN_FAILED);
                     }
                 }
             });
