@@ -59,7 +59,6 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
     private String picturename;
     public Button menuButton;
 
-
     public void init() {
         menuButton = (Button) findViewById(R.id.menu);
         menuButton.setOnClickListener(new View.OnClickListener() {

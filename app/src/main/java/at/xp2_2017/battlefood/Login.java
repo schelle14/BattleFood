@@ -23,8 +23,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     private EditText etEmail;
     private EditText etPassword;
     public Button btnLogin;
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
+    public FirebaseAuth mAuth;
+    public FirebaseAuth.AuthStateListener mAuthListener;
     private TextView txtcheckLogin;
 
 
@@ -47,7 +47,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                     //Switch to Mainactivity page
                     // txtcheckLogin.setText("Sucess");
                     //CHANGE TO REGISTRATION TO START
-                   startActivity(new Intent(Login.this, StartUI.class));
+                    BattleFoodApplication test = ((BattleFoodApplication)getApplicationContext());
+                    test.setUserKey(mAuth.getCurrentUser().getUid());
+                    startActivity(new Intent(Login.this, StartUI.class));
                 }
             }
         };
