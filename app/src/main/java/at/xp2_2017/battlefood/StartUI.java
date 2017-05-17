@@ -49,8 +49,6 @@ public class StartUI extends AppCompatActivity implements View.OnClickListener {
                 Intent menu_ui = new Intent(StartUI.this, MenuUI.class);
                 startActivity(menu_ui);
 
-                //TODO: neue Methode welche user-key und recipe-key in uservotes added
-
             }
         });
 
