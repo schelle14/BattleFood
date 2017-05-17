@@ -10,10 +10,9 @@ import android.widget.TextView;
 public class MenuUI extends AppCompatActivity implements View.OnClickListener {
 
     public Button buttonHome;
-    public Button buttonWatchVotes; //TODO
+    public Button buttonWatchVotes;
     public Button buttonUploadRecipe;
     public Button buttonLogout;
-    public TextView txtMainActivity;
 
     public void init() {
         buttonHome = (Button)findViewById(R.id.HomeBtn);
