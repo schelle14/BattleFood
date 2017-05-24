@@ -2,6 +2,7 @@ package at.xp2_2017.battlefood;
 
 import android.accessibilityservice.GestureDescription;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -9,8 +10,11 @@ import android.graphics.drawable.BitmapDrawable;
 import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -139,6 +143,38 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
 
     }
 
+    public boolean isExternalStorageWritable() {
+        String state = Environment.getExternalStorageState();
+        return Environment.MEDIA_MOUNTED.equals(state);
+    }
+
+    public boolean isStoragePermissionGranted() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                return true;
+            } else {
+
+                ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                return false;
+            }
+        }
+        else { //permission is automatically granted on sdk<23 upon installation
+            return true;
+        }
+    }
+
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        if(grantResults[0]== PackageManager.PERMISSION_GRANTED){
+//            //resume tasks needing this permission
+//
+//
+//
+//        }
+//    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -146,11 +182,10 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
             Bitmap bitmap;
             Uri uri;
 
-            if(data != null)
+            if(data != null && isExternalStorageWritable() && isStoragePermissionGranted())
             {
                 uri = data.getData();
                 try{
-
                     bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),uri);
                     imgRecipe.setImageBitmap(bitmap);
 
@@ -170,10 +205,8 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
 
                 });
             }
-
-
-
-
+            else
+                Toast.makeText(this, "Unable to open image", Toast.LENGTH_LONG).show();
 
     }
 }
