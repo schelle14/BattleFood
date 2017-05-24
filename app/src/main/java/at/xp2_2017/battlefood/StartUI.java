@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -31,8 +31,8 @@ import java.util.Random;
 public class StartUI extends AppCompatActivity implements View.OnClickListener {
     public DatabaseReference mDatabase;
     public StorageReference mStorage;
-    public ImageButton foodImageButtonTop;
-    public ImageButton foodImageButtonBot;
+    public ImageView foodImageButtonTop;
+    public ImageView foodImageButtonBot;
     public Button menuButton;
     public FirebaseAuth mAuth;
     String addToKey;
@@ -124,7 +124,7 @@ public class StartUI extends AppCompatActivity implements View.OnClickListener {
             }
         });
 
-        foodImageButtonTop = (ImageButton) findViewById(R.id.IBfoodtop);
+        foodImageButtonTop = (ImageView) findViewById(R.id.IBfoodtop);
         foodImageButtonTop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,7 +132,7 @@ public class StartUI extends AppCompatActivity implements View.OnClickListener {
             }
         });
 
-        foodImageButtonBot = (ImageButton) findViewById(R.id.IBfoodbottom);
+        foodImageButtonBot = (ImageView) findViewById(R.id.IBfoodbottom);
         foodImageButtonBot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -12,7 +12,7 @@ public class RecipeUI extends AppCompatActivity implements View.OnClickListener{
     public Button menuButton;
 
     public void init() {
-        menuButton = (Button) findViewById(R.id.menu);
+        menuButton = (Button)findViewById(R.id.menu);
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,7 +35,7 @@ public class RecipeUI extends AppCompatActivity implements View.OnClickListener{
         int position = receipe_intent.getExtras().getInt("id");
         ImageAdapter imageAdapter = new ImageAdapter(this);
 
-        ImageView imageView = (ImageView) findViewById(R.id.meal_image);
+        ImageView imageView = (ImageView)findViewById(R.id.meal_image);
         imageView.setImageResource(imageAdapter.mThumbIds[position]);
     }
     @Override
