@@ -1,21 +1,50 @@
 package at.xp2_2017.battlefood;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static android.os.SystemClock.sleep;
+
+
 public class ImageAdapter extends BaseAdapter {
     private Context mContext;
+    DatabaseReference mDatabase;
+    StorageReference mStorage;
+    List<String> mRecipes = new ArrayList<>();
 
-    public ImageAdapter(Context c) {
+    public ImageAdapter(Context c, List<String> recipes) {
         mContext = c;
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mStorage = FirebaseStorage.getInstance().getReference();
+        mRecipes = recipes;
+        Log.d("ImageAdapter: ", mRecipes.toString());
     }
 
     public int getCount() {
-        return mThumbIds.length;
+        Log.d("getCount: ", String.valueOf(mRecipes.size()));
+        return mRecipes.size();
     }
 
     public Object getItem(int position) {
@@ -28,7 +57,8 @@ public class ImageAdapter extends BaseAdapter {
 
     // create a new ImageView for each item referenced by the Adapter
     public View getView(int position, View convertView, ViewGroup parent) {
-        ImageView imageView;
+        final ImageView imageView;
+
         if (convertView == null) {
             // if it's not recycled, initialize some attributes
             imageView = new ImageView(mContext);
@@ -38,16 +68,15 @@ public class ImageAdapter extends BaseAdapter {
         } else {
             imageView = (ImageView) convertView;
         }
+        Log.d("Imagename: ", Constants.FB_IMAGES+"/"+mRecipes.get(position));
+        mStorage.child(Constants.FB_IMAGES+"/"+mRecipes.get(position)).getBytes(Constants.MEGABYTE*10).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                Bitmap bmp_image = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                imageView.setImageBitmap(bmp_image);
+            }
+        });
 
-        imageView.setImageResource(mThumbIds[position]);
         return imageView;
     }
-
-    // references to our images
-    public Integer[] mThumbIds = {
-            R.drawable.food_1,R.drawable.food_2,R.drawable.food_3,R.drawable.food_4,
-            R.drawable.food_5,R.drawable.food_6,R.drawable.food_7,R.drawable.food_1,
-            R.drawable.food_2,R.drawable.food_3,R.drawable.food_4,R.drawable.food_5,
-            R.drawable.food_6,R.drawable.food_7,R.drawable.food_1,R.drawable.food_2
-    };
 }

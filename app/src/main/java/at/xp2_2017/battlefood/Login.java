@@ -42,8 +42,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
 
                 if (firebaseAuth.getCurrentUser() != null) {
-                    BattleFoodApplication test = ((BattleFoodApplication)getApplicationContext());
-                    test.setUserKey(mAuth.getCurrentUser().getUid());
+                    BattleFoodApplication app = ((BattleFoodApplication)getApplicationContext());
+                    app.setUserKey(mAuth.getCurrentUser().getUid());
                     startActivity(new Intent(Login.this, StartUI.class));
                 }
             }
