@@ -61,6 +61,7 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
     private ImageView imgRecipe;
     private TextView txtPictureSelected;
     private String picturename;
+    private Uri uri;
     public Button menuButton;
 
     public void init() {
@@ -124,13 +125,22 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
                 }else {
 
 
+                    StorageReference filepath = mStorage.child("images").child(picturename + ".jpg");
+                    filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Toast.makeText(UploadRecipeUi.this, "Image upload success", Toast.LENGTH_SHORT).show();
+                        }
+
+
+                    });
+
                     addChildRecipe.child("Name").setValue(txtRecipeName.getText().toString());
                     addChildRecipe.child("NumberOfAdult").setValue(number_adult.getText().toString());
                     addChildRecipe.child("NumberOfChild").setValue(number_child.getText().toString());
                     addChildRecipe.child("Ingredients").setValue(ingredients.getText().toString());
                     addChildRecipe.child("Instructions").setValue(instructions.getText().toString());
                     addChildRecipe.child("NameOfPicture").setValue(addChildRecipe.getKey());
-                    Toast.makeText(UploadRecipeUi.this, "Upload successfull", Toast.LENGTH_SHORT).show();
                     Intent toStart = new Intent(UploadRecipeUi.this, StartUI.class);
                     startActivity(toStart);
                 }
@@ -164,23 +174,12 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//        if(grantResults[0]== PackageManager.PERMISSION_GRANTED){
-//            //resume tasks needing this permission
-//
-//
-//
-//        }
-//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
             Bitmap bitmap;
-            Uri uri;
 
             if(data != null && isExternalStorageWritable() && isStoragePermissionGranted())
             {
@@ -192,18 +191,8 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
                 }catch(IOException e) {
                     e.printStackTrace();
                 }
-
                 txtPictureSelected.setText(uri.getPath());
 
-                StorageReference filepath = mStorage.child("images").child(picturename + ".jpg");
-                filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        Toast.makeText(UploadRecipeUi.this, "Image upload success", Toast.LENGTH_SHORT).show();
-                    }
-
-
-                });
             }
             else
                 Toast.makeText(this, "Unable to open image", Toast.LENGTH_LONG).show();
