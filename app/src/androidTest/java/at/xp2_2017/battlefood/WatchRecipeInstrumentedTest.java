@@ -32,6 +32,8 @@ public class WatchRecipeInstrumentedTest {
         onView(withId(R.id.textAdult)).check(matches(withText("Adult:")));
         onView(withId(R.id.textChild)).check(matches(withText("Child:")));
         if(onView(withId(R.id.textName)) == null) throw new AssertionError("Error: No name availabe");
+        if(onView(withId(R.id.textScrollIncstruct)) == null) throw new AssertionError("Error: No Instructions availabe");
+        if(onView(withId(R.id.textScrollIngred)) == null) throw new AssertionError("Error: No Ingred availabe");
     }
 
     @Test
@@ -40,11 +42,6 @@ public class WatchRecipeInstrumentedTest {
         WatchRecipeUI WActivity = WActivityRule.getActivity();
         ImageView recipe_img = (ImageView) WActivity.findViewById(R.id.ImageViewRecipe);
 
-       // ImageButton img_top = (ImageButton) mActivity.findViewById(R.id.IBfoodtop);
-        //ImageButton img_bot = (ImageButton) mActivity.findViewById(R.id.IBfoodbottom);
-
         if(recipe_img.getDrawable() == null) throw new AssertionError("Error: Recipe image not loaded");
-       // if (img_top.getDrawable() == null) throw new AssertionError("IBfoodtop: no image loaded");
-       // if (img_bot.getDrawable() == null) throw new AssertionError("IBfoodbot: no image loaded");
     }
 }
