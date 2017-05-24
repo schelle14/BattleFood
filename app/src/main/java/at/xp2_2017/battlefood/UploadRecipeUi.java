@@ -143,28 +143,37 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-            Uri uri = data.getData();
-
             Bitmap bitmap;
+            Uri uri;
 
-            try{
-                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),uri);
-                imgRecipe.setImageBitmap(bitmap);
+            if(data != null)
+            {
+                uri = data.getData();
+                try{
 
-            }catch(IOException e) {
-                e.printStackTrace();
+                    bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),uri);
+                    imgRecipe.setImageBitmap(bitmap);
+
+                }catch(IOException e) {
+                    e.printStackTrace();
+                }
+
+                txtPictureSelected.setText(uri.getPath());
+
+                StorageReference filepath = mStorage.child("images").child(picturename + ".jpg");
+                filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        Toast.makeText(UploadRecipeUi.this, "Image upload success", Toast.LENGTH_SHORT).show();
+                    }
+
+
+                });
             }
 
-        txtPictureSelected.setText(uri.getPath());
-
-        StorageReference filepath = mStorage.child("images").child(picturename + ".jpg");
-        filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Toast.makeText(UploadRecipeUi.this, "Image upload success", Toast.LENGTH_SHORT).show();
-            }
 
 
-        });
+
+
     }
 }
