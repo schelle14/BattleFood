@@ -5,8 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
-import android.app.Activity;
 import android.widget.ImageView;
 
 public class RecipeUI extends AppCompatActivity implements View.OnClickListener{
@@ -14,14 +12,12 @@ public class RecipeUI extends AppCompatActivity implements View.OnClickListener{
     public Button menuButton;
 
     public void init() {
-        menuButton = (Button) findViewById(R.id.menu);
+        menuButton = (Button)findViewById(R.id.menu);
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent menu_change = new Intent(RecipeUI.this, MenuUI.class);
-                startActivity(menu_change);
-
+                Intent menue_intent = new Intent(RecipeUI.this, MenuUI.class);
+                startActivity(menue_intent);
             }
         });
     }
@@ -33,15 +29,14 @@ public class RecipeUI extends AppCompatActivity implements View.OnClickListener{
 
         init();
         // Get intent data
-        Intent i = getIntent();
+        Intent receipe_intent = getIntent();
 
         // Selected image id
-        int position = i.getExtras().getInt("id");
+        int position = receipe_intent.getExtras().getInt("id");
         ImageAdapter imageAdapter = new ImageAdapter(this);
 
-        ImageView imageView = (ImageView) findViewById(R.id.meal_image);
+        ImageView imageView = (ImageView)findViewById(R.id.meal_image);
         imageView.setImageResource(imageAdapter.mThumbIds[position]);
-
     }
     @Override
     public void onClick(View v) {

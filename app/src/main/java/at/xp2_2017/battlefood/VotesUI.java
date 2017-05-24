@@ -31,7 +31,6 @@ public class VotesUI extends AppCompatActivity{
             }
         });
 
-
         GridView gridview = (GridView) findViewById(R.id.gridview);
         gridview.setAdapter(new ImageAdapter(this));
 

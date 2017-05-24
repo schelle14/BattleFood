@@ -50,7 +50,7 @@ public class RegistrationUI extends AppCompatActivity implements View.OnClickLis
         btnRegister = (Button) findViewById(R.id.buttonRegister);
         btnRegister.setOnClickListener(this);
         mProgress = new ProgressDialog(this);
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
+        mDatabase = FirebaseDatabase.getInstance().getReference().child(Constants.FB_USER);
     }
 
     @Override
@@ -66,7 +66,7 @@ public class RegistrationUI extends AppCompatActivity implements View.OnClickLis
 
         if(!TextUtils.isEmpty(username) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password))
         {
-            mProgress.setMessage("Signing up..");
+            mProgress.setMessage(Constants.SIGNING_UP);
             mProgress.show();
 
             mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -77,9 +77,9 @@ public class RegistrationUI extends AppCompatActivity implements View.OnClickLis
                         //gets de unique Id of current user
                         String user_id = mAuth.getCurrentUser().getUid();
                         DatabaseReference current_user_db = mDatabase.child(user_id);
-                        current_user_db.child("username").setValue(username);
-                        current_user_db.child("email").setValue(email);
-                        current_user_db.child("RecipeKey").setValue(";");
+                        current_user_db.child(Constants.FB_USER_USERNAME).setValue(username);
+                        current_user_db.child(Constants.FB_USER_EMAIL).setValue(email);
+                        current_user_db.child(Constants.FB_USER_RECIPEKEY).setValue(";");
                         mProgress.dismiss();
 
                         Intent main = new Intent(RegistrationUI.this, MainActivity.class);
@@ -88,7 +88,7 @@ public class RegistrationUI extends AppCompatActivity implements View.OnClickLis
                     else
                     {
                         mProgress.dismiss();
-                        Toast.makeText(RegistrationUI.this, "Something went wrong", Toast.LENGTH_LONG).show();
+                        Toast.makeText(RegistrationUI.this, Constants.SOMETHING_WENT_WRONG, Toast.LENGTH_LONG).show();
                     }
                 }
             });
