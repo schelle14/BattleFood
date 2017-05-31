@@ -16,8 +16,11 @@ import static android.support.test.espresso.intent.Intents.intended;
 import static android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthProvider;
 
-
+/*
 @RunWith(AndroidJUnit4.class)
 public class WatchRecipeInstrumentedTest {
 
@@ -38,10 +41,9 @@ public class WatchRecipeInstrumentedTest {
 
     @Test
     public void testCheckImages() throws Exception {
-
         WatchRecipeUI WActivity = WActivityRule.getActivity();
         ImageView recipe_img = (ImageView) WActivity.findViewById(R.id.ImageViewRecipe);
 
         if(recipe_img.getDrawable() == null) throw new AssertionError("Error: Recipe image not loaded");
     }
-}
+}*/
