@@ -30,13 +30,6 @@ public class RecipeUI extends AppCompatActivity implements View.OnClickListener{
         init();
         // Get intent data
         Intent receipe_intent = getIntent();
-
-        // Selected image id
-        int position = receipe_intent.getExtras().getInt("id");
-        ImageAdapter imageAdapter = new ImageAdapter(this);
-
-        ImageView imageView = (ImageView)findViewById(R.id.meal_image);
-        imageView.setImageResource(imageAdapter.mThumbIds[position]);
     }
     @Override
     public void onClick(View v) {

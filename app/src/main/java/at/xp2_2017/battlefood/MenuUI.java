@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class MenuUI extends AppCompatActivity implements View.OnClickListener {
 
     public Button buttonHome;
@@ -42,18 +44,19 @@ public class MenuUI extends AppCompatActivity implements View.OnClickListener {
             }
 
         });
-        /* TODO
+
         buttonLogout = (Button)findViewById(R.id.Logout);
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                FirebaseAuth.getInstance().signOut();
                 Intent logout_change = new Intent(MenuUI.this, Login.class);
                 startActivity(logout_change);
             }
 
         });
-        */
+
     }
 
     @Override

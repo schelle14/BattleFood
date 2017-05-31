@@ -35,4 +35,17 @@ public class MenuUIInstrumentedTest {
         onView(withId(R.id.RecipeUpload)).perform(click());
         intended(hasComponent(UploadRecipeUi.class.getName()));
     }
+/*TODO
+    @Test
+    public void testClickLogout() throws Exception {
+        onView(withId(R.id.Logout)).perform(click());
+        intended(hasComponent(???.class.getName()));
+    }*/
+
+    @Test
+    public void testClickVoteRecipe() throws Exception {
+        onView(withId(R.id.WatchVotesBtn)).perform(click());
+        intended(hasComponent(VotesUI.class.getName()));
+    }
+
 }
