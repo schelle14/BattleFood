@@ -8,8 +8,8 @@ public class Constants {
     public static final String NOT_ENOUGH_RECIPES = "Not enough recipes to vote!";
 
     public static final String jpg = ".jpg";
-
     public static final long MEGABYTE = 1024 * 1024;
+    public static final String KEY_RECIPE = "RecipeId";
 
     public static final String FB_USER = "Users";
     public static final String FB_USER_USERNAME = "username";
@@ -17,6 +17,7 @@ public class Constants {
     public static final String FB_USER_RECIPEKEY = "recipekey";
 
     public static final String FB_RECIPE = "Recipe";
+    public static final String FB_RECIPE_NAME = "Name";
 
     public static final String FB_IMAGES = "images";
 }
