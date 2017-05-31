@@ -65,24 +65,19 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
     public Button menuButton;
 
     public void init() {
-        menuButton = (Button) findViewById(R.id.menu);
+        menuButton = (Button) findViewById(R.id.menuRUI);
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent menu_change = new Intent(UploadRecipeUi.this, MenuUI.class);
                 startActivity(menu_change);
-
             }
         });
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_recipe_ui);
-
-
 
         init();
 

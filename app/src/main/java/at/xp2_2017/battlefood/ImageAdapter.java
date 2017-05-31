@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,14 +33,20 @@ public class ImageAdapter extends BaseAdapter {
     private Context mContext;
     DatabaseReference mDatabase;
     StorageReference mStorage;
-    List<String> mRecipes = new ArrayList<>();
+    List<String> mRecipes;
+
 
     public ImageAdapter(Context c, List<String> recipes) {
+    try{
+        mRecipes = new ArrayList<>();
         mContext = c;
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mStorage = FirebaseStorage.getInstance().getReference();
         mRecipes = recipes;
         Log.d("ImageAdapter: ", mRecipes.toString());
+    }
+    catch (Exception e)
+    {}
     }
 
     public int getCount() {
@@ -65,7 +72,8 @@ public class ImageAdapter extends BaseAdapter {
             imageView.setLayoutParams(new GridView.LayoutParams(350, 350));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imageView.setPadding(8, 8, 8, 8);
-        } else {
+        }
+        else {
             imageView = (ImageView) convertView;
         }
         Log.d("Imagename: ", Constants.FB_IMAGES+"/"+mRecipes.get(position));

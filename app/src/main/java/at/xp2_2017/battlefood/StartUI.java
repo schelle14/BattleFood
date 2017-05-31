@@ -115,7 +115,7 @@ public class StartUI extends AppCompatActivity implements View.OnClickListener {
             }
         });
 
-        menuButton = (Button)findViewById(R.id.menu);
+        menuButton = (Button)findViewById(R.id.menuSUI);
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -38,8 +38,8 @@ public class UploadRecipeInstrumentedTest {
 
         onView(withText("Select Pic")).perform(click());
     }
-
-  /*  @Test
+/*
+    @Test
     public void testPerson() throws Exception {
 
         onView(withId(R.id.editTextadult)).perform(typeText("5"),closeSoftKeyboard());
@@ -71,7 +71,6 @@ public class UploadRecipeInstrumentedTest {
 
     @Test
     public void testUploadButton() throws Exception {
-
         onView(withText("Upload")).perform(click());
     }
 

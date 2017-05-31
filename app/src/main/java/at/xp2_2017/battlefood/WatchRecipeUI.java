@@ -35,7 +35,7 @@ public class WatchRecipeUI extends AppCompatActivity {
     public Button menuButton;
 
     public void init() {
-        menuButton = (Button)findViewById(R.id.menu);
+        menuButton = (Button)findViewById(R.id.menuWRUI);
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,11 +67,11 @@ public class WatchRecipeUI extends AppCompatActivity {
 
         ingred = (TextView) findViewById(R.id.textParentContent);
 
-
+/*
         mDatabase.child(Constants.FB_USER+"/"+user.getUid()+"/"+Constants.FB_USER_RECIPEKEY).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-/*
+
              //  final List<String> recipes = Arrays.asList(dataSnapshot.getValue().toString().split(";"));
               // test = recipes.get(0);
              //  test = dataSnapshot.getValue().toString().concat(".jpg");
@@ -105,7 +105,7 @@ public class WatchRecipeUI extends AppCompatActivity {
                 }
                 else
                     Toast.makeText(WatchRecipeUI.this, Constants.SOMETHING_WENT_WRONG, Toast.LENGTH_LONG).show();
-                    */
+
             }
 
             @Override
@@ -113,7 +113,7 @@ public class WatchRecipeUI extends AppCompatActivity {
 
             }
         });
-
+*/
 
     }
 }

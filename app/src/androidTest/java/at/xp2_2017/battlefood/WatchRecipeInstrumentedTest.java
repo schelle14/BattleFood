@@ -20,7 +20,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthProvider;
 
-/*
+
 @RunWith(AndroidJUnit4.class)
 public class WatchRecipeInstrumentedTest {
 
@@ -38,12 +38,12 @@ public class WatchRecipeInstrumentedTest {
         if(onView(withId(R.id.textScrollIncstruct)) == null) throw new AssertionError("Error: No Instructions availabe");
         if(onView(withId(R.id.textScrollIngred)) == null) throw new AssertionError("Error: No Ingred availabe");
     }
-
+/*
     @Test
     public void testCheckImages() throws Exception {
         WatchRecipeUI WActivity = WActivityRule.getActivity();
         ImageView recipe_img = (ImageView) WActivity.findViewById(R.id.ImageViewRecipe);
 
         if(recipe_img.getDrawable() == null) throw new AssertionError("Error: Recipe image not loaded");
-    }
-}*/
+    }*/
+}

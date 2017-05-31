@@ -7,7 +7,7 @@
     tools:context="at.xp2_2017.battlefood.RegistrationUI">
 
     <Button
-        android:id="@+id/menu"
+        android:id="@+id/menuWRUI"
         style="@style/Widget.AppCompat.Button.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

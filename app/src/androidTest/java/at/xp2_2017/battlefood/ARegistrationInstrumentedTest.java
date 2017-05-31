@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -21,6 +22,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static java.lang.Thread.sleep;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Instrumentation test, which will execute on an Android device.
@@ -52,12 +54,12 @@ public class ARegistrationInstrumentedTest {
         onView(withId(R.id.buttonRegister)).check(matches(withText("Register")));
 
     }
-/*
+
     @Test
     public void testValidRegistration() throws Exception {
 
-        onView(withId(R.id.editTextUserName)).perform(typeText("test"),closeSoftKeyboard());
-        onView(withId(R.id.editTextUserName)).check(matches(withText("test")));
+        onView(withId(R.id.editTextUserName)).perform(typeText("tester123"),closeSoftKeyboard());
+        onView(withId(R.id.editTextUserName)).check(matches(withText("tester123")));
 
         onView(withId(R.id.editTextEmail)).perform(typeText("test@student.tugraz.at"),closeSoftKeyboard());
         onView(withId(R.id.editTextEmail)).check(matches(withText("test@student.tugraz.at")));
@@ -72,13 +74,24 @@ public class ARegistrationInstrumentedTest {
 
         sleep(5000);
 
-        // TODO Delete doesn´t work
-        //onView(withId(R.id.txtMainA)).check(matches(withText("FoodBattle by Team Tim")));
+
 
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         final FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        boolean test = false;
+        if(currentUser == null)
+        {
+          test = true;
+        }
+        else {
+            test = false;
+            currentUser.delete();
+        }
+        assertEquals(test,true);
 
-        currentUser.delete();
-    }*/
+        // TODO Delete doesn´t work
+        //onView(withId(R.id.txtMainA)).check(matches(withText("FoodBattle by Team Tim")));
+       // currentUser.delete();
+    }
 
 }
