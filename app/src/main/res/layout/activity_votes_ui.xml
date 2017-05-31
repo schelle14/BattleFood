@@ -36,14 +36,15 @@
         android:layout_width="238dp"
         android:layout_height="61dp"
         android:text="Your Votes"
-        android:layout_marginLeft="73dp"
+        android:textAlignment="center"
+        android:textSize="20pt"
+        android:layout_marginLeft="24dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginStart="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="68dp"
-        app:layout_constraintHorizontal_bias="0.0" />
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <GridView
         android:id="@+id/gridview"

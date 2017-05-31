@@ -108,16 +108,17 @@
         android:id="@+id/textScrollIncstruct"
         android:layout_width="285dp"
         android:layout_height="75dp"
-        android:text="ghf"
-        android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:scrollbars="vertical"
-        android:fadeScrollbars="false"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/textIngredients"
         android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:background="@color/common_google_signin_btn_text_light_disabled"
+        android:fadeScrollbars="false"
+        android:scrollbars="vertical"
+        android:text="ghf"
+        app:layout_constraintLeft_toRightOf="@+id/textIngredients"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textChild" />
 
     <TextView
@@ -127,7 +128,7 @@
         android:text="Parent Content"
         android:layout_marginStart="8dp"
         app:layout_constraintLeft_toRightOf="@+id/textAdult"
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="8dp"
         app:layout_constraintTop_toBottomOf="@+id/textWorktime" />
 
@@ -135,17 +136,18 @@
         android:id="@+id/textScrollIngred"
         android:layout_width="285dp"
         android:layout_height="75dp"
-        android:text="dfsfI´m a scroll j"
-        android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:scrollbars="vertical"
-        android:fadeScrollbars="false"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@+id/textScrollIncstruct"
-        app:layout_constraintRight_toRightOf="parent"
+        android:background="@color/common_google_signin_btn_text_light_disabled"
+        android:fadeScrollbars="false"
+        android:scrollbars="vertical"
+        android:text="dfsfI´m a scroll j"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toRightOf="@+id/textInstruction"
-        app:layout_constraintHorizontal_bias="0.0" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textScrollIncstruct" />
 
     <TextView
         android:id="@+id/textWorktime"
@@ -177,6 +179,8 @@
         android:layout_width="181dp"
         android:layout_height="65dp"
         android:text="Nüsse"
+        android:textAlignment="center"
+        android:textSize="20pt"
         android:layout_marginLeft="102dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginRight="8dp"

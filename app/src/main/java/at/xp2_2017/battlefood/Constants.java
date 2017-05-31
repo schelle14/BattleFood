@@ -17,6 +17,12 @@ public class Constants {
     public static final String FB_USER_RECIPEKEY = "recipekey";
 
     public static final String FB_RECIPE = "Recipe";
+    public static final String FB_INGREDIENTS = "Ingredients";
+    public static final String FB_INSTRUCTIONS = "Instructions";
+    public static final String FB_NAME = "Name";
+    public static final String FB_NRADULT = "NumberOfAdult";
+    public static final String FB_NRCHILD = "NumberOfChild";
+
 
     public static final String FB_IMAGES = "images";
 }
