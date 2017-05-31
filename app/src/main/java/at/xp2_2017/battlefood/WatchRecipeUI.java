@@ -75,7 +75,7 @@ public class WatchRecipeUI extends AppCompatActivity {
         String recipe_key = getIntent().getExtras().getString(Constants.KEY_RECIPE);
         DatabaseReference recipeRef = mDatabase.child(Constants.FB_RECIPE).child(recipe_key.substring(0, recipe_key.length()-4));
 
-        recipe_name = (TextView) findViewById(R.id.RecipeName);
+        recipe_name = (TextView) findViewById(R.id.textName);
 
 
         recipeRef.addListenerForSingleValueEvent(new ValueEventListener() {
