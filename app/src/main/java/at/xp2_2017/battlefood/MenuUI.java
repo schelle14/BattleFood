@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -62,6 +63,7 @@ public class MenuUI extends AppCompatActivity implements View.OnClickListener {
 
                 FirebaseAuth.getInstance().signOut();
                 Intent logout_change = new Intent(MenuUI.this, Login.class);
+                Toast.makeText(MenuUI.this, "¯\\_(ツ)_/¯", Toast.LENGTH_SHORT).show();
                 startActivity(logout_change);
             }
 

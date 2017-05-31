@@ -79,7 +79,7 @@ public class RegistrationUI extends AppCompatActivity implements View.OnClickLis
                         DatabaseReference current_user_db = mDatabase.child(user_id);
                         current_user_db.child(Constants.FB_USER_USERNAME).setValue(username);
                         current_user_db.child(Constants.FB_USER_EMAIL).setValue(email);
-                        current_user_db.child(Constants.FB_USER_RECIPEKEY).setValue(";");
+                        current_user_db.child(Constants.FB_USER_RECIPEKEY).setValue("");
                         mProgress.dismiss();
 
                         Intent main = new Intent(RegistrationUI.this, MainActivity.class);
