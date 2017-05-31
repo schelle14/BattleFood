@@ -51,7 +51,9 @@
         <activity
             android:name=".UploadRecipeUi"
             android:windowSoftInputMode="adjustPan" />
-
+        <activity
+            android:name=".WatchRecipeUI"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".MenuUI" />
 
