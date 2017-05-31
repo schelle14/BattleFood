@@ -56,7 +56,7 @@ public class VotesUI extends AppCompatActivity{
                 gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                         // Toast.makeText(VotesUI.this, "" + position, Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(getApplicationContext(), RecipeUI.class);
+                        Intent i = new Intent(getApplicationContext(), WatchRecipeUI.class);
                         // Pass image index
                         i.putExtra("id", position);
                         startActivity(i);
