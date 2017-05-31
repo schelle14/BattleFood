@@ -1,12 +1,13 @@
 package at.xp2_2017.battlefood;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -18,25 +19,34 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.jar.Attributes;
-
 public class WatchRecipeUI extends AppCompatActivity {
 
     public DatabaseReference mDatabase;
     public StorageReference mStorage;
     public ImageView RecipeImg;
-    public Button menuButton;
     public FirebaseAuth mAuth;
     public TextView ingred;
     public String test;
+    public Button menuButton;
+
+    public void init() {
+        menuButton = (Button)findViewById(R.id.menu);
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent menue_intent = new Intent(WatchRecipeUI.this, MenuUI.class);
+                startActivity(menue_intent);
+            }
+        });
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_watch_recipe_ui);
+
+        init();
+
 
         //Load FB References
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -56,9 +66,10 @@ public class WatchRecipeUI extends AppCompatActivity {
 
 
         mDatabase.child(Constants.FB_USER+"/"+user.getUid()+"/"+Constants.FB_USER_RECIPEKEY).addListenerForSingleValueEvent(new ValueEventListener() {
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
+/*
              //  final List<String> recipes = Arrays.asList(dataSnapshot.getValue().toString().split(";"));
               // test = recipes.get(0);
              //  test = dataSnapshot.getValue().toString().concat(".jpg");
@@ -93,7 +104,9 @@ public class WatchRecipeUI extends AppCompatActivity {
                 }
                 else
                     Toast.makeText(WatchRecipeUI.this, Constants.SOMETHING_WENT_WRONG, Toast.LENGTH_LONG).show();
+                    */
             }
+
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -103,4 +116,5 @@ public class WatchRecipeUI extends AppCompatActivity {
 
 
     }
+
 }
