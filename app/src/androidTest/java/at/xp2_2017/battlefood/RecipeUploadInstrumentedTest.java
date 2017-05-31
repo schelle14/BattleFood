@@ -51,7 +51,8 @@ public class RecipeUploadInstrumentedTest {
         onView(withId(R.id.btnUpload)).check(matches(withText("Upload")));
     }
 
-    @Test
+   /* @Test
+
     public void testUploadSuccess() throws Exception {
         onView(withId(R.id.txtNameRecipe)).perform(typeText("Test Recipe"), closeSoftKeyboard());
         onView(withId(R.id.editTextadult)).perform(typeText("2"), closeSoftKeyboard());
@@ -62,7 +63,7 @@ public class RecipeUploadInstrumentedTest {
         onView(withId(R.id.btnUpload)).perform(click());
         sleep(2000);
         intended(hasComponent(StartUI.class.getName()));
-    }
+    }*/
 
 
 }

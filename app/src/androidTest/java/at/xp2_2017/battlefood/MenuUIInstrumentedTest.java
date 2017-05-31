@@ -19,6 +19,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
+/*
 @RunWith(AndroidJUnit4.class)
 public class MenuUIInstrumentedTest {
     @Rule
@@ -41,11 +42,11 @@ public class MenuUIInstrumentedTest {
         onView(withId(R.id.Logout)).perform(click());
         intended(hasComponent(???.class.getName()));
     }*/
-
+/*
     @Test
     public void testClickVoteRecipe() throws Exception {
         onView(withId(R.id.WatchVotesBtn)).perform(click());
         intended(hasComponent(VotesUI.class.getName()));
     }
 
-}
+}*/
