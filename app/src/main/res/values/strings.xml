@@ -21,4 +21,6 @@
     <string name="_Password">Password</string>
     <string name="_RetypePassword">Retype Password</string>
     <string name="title_activity_menu">Menu</string>
+    <string name="facebook_app_id">1957722517792090</string>
+    <string name="fb_login_protocol_scheme">fb1957722517792090</string>
 </resources>

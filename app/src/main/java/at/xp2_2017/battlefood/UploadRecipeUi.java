@@ -2,6 +2,7 @@ package at.xp2_2017.battlefood;
 
 import android.accessibilityservice.GestureDescription;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -9,8 +10,11 @@ import android.graphics.drawable.BitmapDrawable;
 import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -57,6 +61,7 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
     private ImageView imgRecipe;
     private TextView txtPictureSelected;
     private String picturename;
+    private Uri uri;
     public Button menuButton;
 
     public void init() {
@@ -120,13 +125,22 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
                 }else {
 
 
+                    StorageReference filepath = mStorage.child("images").child(picturename + ".jpg");
+                    filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Toast.makeText(UploadRecipeUi.this, "Image upload success", Toast.LENGTH_SHORT).show();
+                        }
+
+
+                    });
+
                     addChildRecipe.child("Name").setValue(txtRecipeName.getText().toString());
                     addChildRecipe.child("NumberOfAdult").setValue(number_adult.getText().toString());
                     addChildRecipe.child("NumberOfChild").setValue(number_child.getText().toString());
                     addChildRecipe.child("Ingredients").setValue(ingredients.getText().toString());
                     addChildRecipe.child("Instructions").setValue(instructions.getText().toString());
                     addChildRecipe.child("NameOfPicture").setValue(addChildRecipe.getKey());
-                    Toast.makeText(UploadRecipeUi.this, "Upload successfull", Toast.LENGTH_SHORT).show();
                     Intent toStart = new Intent(UploadRecipeUi.this, StartUI.class);
                     startActivity(toStart);
                 }
@@ -139,32 +153,49 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
 
     }
 
+    public boolean isExternalStorageWritable() {
+        String state = Environment.getExternalStorageState();
+        return Environment.MEDIA_MOUNTED.equals(state);
+    }
+
+    public boolean isStoragePermissionGranted() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                return true;
+            } else {
+
+                ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                return false;
+            }
+        }
+        else { //permission is automatically granted on sdk<23 upon installation
+            return true;
+        }
+    }
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-            Uri uri = data.getData();
-
             Bitmap bitmap;
 
-            try{
-                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),uri);
-                imgRecipe.setImageBitmap(bitmap);
+            if(data != null && isExternalStorageWritable() && isStoragePermissionGranted())
+            {
+                uri = data.getData();
+                try{
+                    bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),uri);
+                    imgRecipe.setImageBitmap(bitmap);
 
-            }catch(IOException e) {
-                e.printStackTrace();
+                }catch(IOException e) {
+                    e.printStackTrace();
+                }
+                txtPictureSelected.setText(uri.getPath());
+
             }
+            else
+                Toast.makeText(this, "Unable to open image", Toast.LENGTH_LONG).show();
 
-        txtPictureSelected.setText(uri.getPath());
-
-        StorageReference filepath = mStorage.child("images").child(picturename + ".jpg");
-        filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Toast.makeText(UploadRecipeUi.this, "Image upload success", Toast.LENGTH_SHORT).show();
-            }
-
-
-        });
     }
 }
