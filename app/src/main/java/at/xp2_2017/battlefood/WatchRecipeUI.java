@@ -19,6 +19,11 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.jar.Attributes;
+
 public class WatchRecipeUI extends AppCompatActivity {
 
     public DatabaseReference mDatabase;
@@ -63,10 +68,7 @@ public class WatchRecipeUI extends AppCompatActivity {
         ingred = (TextView) findViewById(R.id.textParentContent);
 
 
-
-
         mDatabase.child(Constants.FB_USER+"/"+user.getUid()+"/"+Constants.FB_USER_RECIPEKEY).addListenerForSingleValueEvent(new ValueEventListener() {
-
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 /*
@@ -95,7 +97,6 @@ public class WatchRecipeUI extends AppCompatActivity {
                             textScrollview.setText(test);
 
                         }
-
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
 
@@ -107,7 +108,6 @@ public class WatchRecipeUI extends AppCompatActivity {
                     */
             }
 
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
@@ -116,5 +116,4 @@ public class WatchRecipeUI extends AppCompatActivity {
 
 
     }
-
 }
