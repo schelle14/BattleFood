@@ -2,9 +2,13 @@ package at.xp2_2017.battlefood;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
+import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.widget.EditText;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -15,6 +19,8 @@ import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.intent.Intents.intended;
+import static android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static java.lang.Thread.sleep;
@@ -37,7 +43,18 @@ public class LoginInstrumentedTest {
     }
 
     @Rule
-    public ActivityTestRule<Login> mActivityRule = new ActivityTestRule<>(Login.class);
+    public IntentsTestRule<Login> mActivityRule = new IntentsTestRule<>(Login.class);
+
+    @Test
+    public void testLoginSuccess() throws Exception {
+
+        onView(withId(R.id.etEmailLogin)).perform(typeText("test1@test.com"), closeSoftKeyboard());
+        onView(withId(R.id.etPasswordLogin)).perform(typeText("test123"), closeSoftKeyboard());
+        onView(withId(R.id.btnLogin)).perform((click()));
+        sleep(5000);
+        intended(hasComponent(StartUI.class.getName()));
+        FirebaseAuth.getInstance().signOut();
+    }
 
     @Test
     public void testLoginButton() throws Exception {
@@ -52,13 +69,6 @@ public class LoginInstrumentedTest {
         onView(withId(R.id.etPasswordLogin)).perform(typeText("123456"), closeSoftKeyboard());
         onView(withId(R.id.btnLogin)).perform((click()));
         onView(withId(R.id.txtcheckLogin)).check(matches(withText("Fields are empty")));
-    }
-
-    @Test
-    public void testEmail() throws Exception {
-
-        onView(withId(R.id.etEmailLogin)).perform(typeText("su@si.at"), closeSoftKeyboard());
-        onView(withId(R.id.etEmailLogin)).check(matches(withText("su@si.at")));
     }
 
     @Test
@@ -77,4 +87,6 @@ public class LoginInstrumentedTest {
         sleep(3000);
         onView(withId(R.id.txtcheckLogin)).check(matches(withText("Sign in failed")));
     }
+
+
 }

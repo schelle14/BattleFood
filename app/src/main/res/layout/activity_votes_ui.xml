@@ -7,7 +7,7 @@
     tools:context="at.xp2_2017.battlefood.VotesUI">
 
     <Button
-        android:id="@+id/menu"
+        android:id="@+id/menu_votes"
         style="@style/Widget.AppCompat.Button.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,12 +16,12 @@
         android:layout_marginRight="2dp"
         android:layout_marginTop="8dp"
         android:backgroundTint="@android:drawable/screen_background_light_transparent"
-        android:text="|||"
-        android:textStyle="bold"
-        android:rotation="90"
         android:lineSpacingExtra="20sp"
-        android:textSize="30dp"
+        android:rotation="90"
+        android:text="|||"
         android:textAlignment="center"
+        android:textSize="30dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"

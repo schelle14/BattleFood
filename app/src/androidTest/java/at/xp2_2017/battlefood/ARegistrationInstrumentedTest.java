@@ -81,7 +81,7 @@ public class ARegistrationInstrumentedTest {
         boolean test = false;
         if(currentUser == null)
         {
-          test = true;
+            test = true;
         }
         else {
             test = false;
@@ -91,7 +91,7 @@ public class ARegistrationInstrumentedTest {
 
         // TODO Delete doesn´t work
         //onView(withId(R.id.txtMainA)).check(matches(withText("FoodBattle by Team Tim")));
-       // currentUser.delete();
+        // currentUser.delete();
     }
 
 }

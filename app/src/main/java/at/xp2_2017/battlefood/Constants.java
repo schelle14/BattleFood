@@ -18,6 +18,11 @@ public class Constants {
 
     public static final String FB_RECIPE = "Recipe";
     public static final String FB_RECIPE_NAME = "Name";
+    public static final String FB_RECIPE_TIME = "WorkingTime";
+    public static final String FB_RECIPE_ADULT = "NumberOfAdult";
+    public static final String FB_RECIPE_CHILD = "NumberOfChild";
+    public static final String FB_RECIPE_INGREDIENTS = "Ingredients";
+    public static final String FB_RECIPE_INSTRUCTIONS = "Instructions";
 
     public static final String FB_IMAGES = "images";
 }
