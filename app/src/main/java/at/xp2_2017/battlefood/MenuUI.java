@@ -27,7 +27,7 @@ public class MenuUI extends AppCompatActivity implements View.OnClickListener {
             }
         });
 
-        buttonWatchVotes = (Button)findViewById(R.id.WatchVotesBtn);
+        buttonWatchVotes = (Button)findViewById(R.id.btnWatchVotes);
         buttonWatchVotes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,7 +37,7 @@ public class MenuUI extends AppCompatActivity implements View.OnClickListener {
 
         });
 
-        buttonUploadRecipe = (Button)findViewById(R.id.RecipeUpload);
+        buttonUploadRecipe = (Button)findViewById(R.id.btnRecipeUpload);
         buttonUploadRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,7 +47,7 @@ public class MenuUI extends AppCompatActivity implements View.OnClickListener {
 
         });
 
-        buttonLogout = (Button)findViewById(R.id.Logout);
+        buttonLogout = (Button)findViewById(R.id.btnLogout);
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
