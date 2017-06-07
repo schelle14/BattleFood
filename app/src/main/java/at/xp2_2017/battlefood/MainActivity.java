@@ -12,8 +12,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public Button buttonReg;
     public Button buttonLog;
     public TextView txtMainActivity;
-    public Button buttonWatch;
-
+    
     public void init() {
         buttonReg = (Button)findViewById(R.id.buttonReg);
         buttonReg.setOnClickListener(new View.OnClickListener() {
