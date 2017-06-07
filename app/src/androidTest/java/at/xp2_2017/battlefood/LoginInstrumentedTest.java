@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.widget.EditText;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -51,14 +52,13 @@ public class LoginInstrumentedTest {
         onView(withId(R.id.etPasswordLogin)).perform(typeText("123456"), closeSoftKeyboard());
         onView(withId(R.id.btnLogin)).perform((click()));
         onView(withId(R.id.txtcheckLogin)).check(matches(withText("Fields are empty")));
-
     }
 
     @Test
     public void testEmail() throws Exception {
 
-        onView(withId(R.id.etEmailLogin)).perform(typeText("test.email@tugraz.at"), closeSoftKeyboard());
-        onView(withId(R.id.etEmailLogin)).check(matches(withText("test.email@tugraz.at")));
+        onView(withId(R.id.etEmailLogin)).perform(typeText("su@si.at"), closeSoftKeyboard());
+        onView(withId(R.id.etEmailLogin)).check(matches(withText("su@si.at")));
     }
 
     @Test
@@ -76,7 +76,5 @@ public class LoginInstrumentedTest {
         onView(withId(R.id.btnLogin)).perform((click()));
         sleep(3000);
         onView(withId(R.id.txtcheckLogin)).check(matches(withText("Sign in failed")));
-
     }
-
 }

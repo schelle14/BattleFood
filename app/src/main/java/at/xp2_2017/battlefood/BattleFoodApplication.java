@@ -9,9 +9,9 @@ public class BattleFoodApplication extends Application {
     private String user_key;
 
     public String getUserKey() {
-        return user_key;
+            return user_key;
     }
     public void setUserKey(String str) {
-        user_key = str;
+            user_key = str;
     }
 }
