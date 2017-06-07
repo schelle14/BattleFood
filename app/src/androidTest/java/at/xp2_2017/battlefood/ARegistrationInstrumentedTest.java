@@ -77,8 +77,6 @@ public class ARegistrationInstrumentedTest {
 
         sleep(5000);
 
-
-
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         final FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         boolean test = false;

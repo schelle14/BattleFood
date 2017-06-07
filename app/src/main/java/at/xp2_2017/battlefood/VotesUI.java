@@ -26,8 +26,8 @@ import java.util.List;
 
 public class VotesUI extends AppCompatActivity{
 
-    public Button menuButton;
-    public DatabaseReference mDatabase;
+    private Button menuButton;
+    private DatabaseReference mDatabase;
     List<String> mRecipes = new ArrayList<>();
 
     @Override

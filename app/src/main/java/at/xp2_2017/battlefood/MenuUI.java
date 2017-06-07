@@ -17,7 +17,11 @@ public class MenuUI extends AppCompatActivity implements View.OnClickListener {
     public Button buttonLogout;
     public Button buttonRej;
 
-    public void init() {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_menu);
+
         buttonHome = (Button)findViewById(R.id.btnMenuHome);
         buttonHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,13 +64,6 @@ public class MenuUI extends AppCompatActivity implements View.OnClickListener {
 
         });
 
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
-        init();
     }
 
     @Override

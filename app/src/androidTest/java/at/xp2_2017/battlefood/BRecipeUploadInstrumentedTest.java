@@ -41,7 +41,7 @@ import static org.junit.Assert.assertEquals;
  */
 
 @RunWith(AndroidJUnit4.class)
-public class RecipeUploadInstrumentedTest {
+public class BRecipeUploadInstrumentedTest {
 
     @Test
     public void useAppContext() throws Exception {
@@ -61,17 +61,19 @@ public class RecipeUploadInstrumentedTest {
         onView(withId(R.id.btnUpload)).check(matches(withText("Upload")));
     }
 
-   /*@Test
+    @Test
     public void testUploadSuccess() throws Exception {
-       final FirebaseAuth mAuth;
-       mAuth = FirebaseAuth.getInstance();
-       mAuth.getInstance();
-       mAuth.signInWithEmailAndPassword("test2@test.com", "test123").addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-           @Override
-           public void onComplete(@NonNull Task<AuthResult> task) {
-
-           }
-       });
+        final FirebaseAuth mauth;
+        mauth = FirebaseAuth.getInstance();
+        if(mauth.getCurrentUser() == null) {
+            mauth.signInWithEmailAndPassword("test3@test.com", "test123").addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (!task.isSuccessful()) {
+                    }
+                }
+            });
+        }
 
         sleep(5000);
         onView(withId(R.id.txtNameRecipe)).perform(typeText("Test Recipe1"), closeSoftKeyboard());
@@ -79,12 +81,11 @@ public class RecipeUploadInstrumentedTest {
         onView(withId(R.id.editTextchild)).perform(typeText("1"), closeSoftKeyboard());
         onView(withId(R.id.editTexttime)).perform(typeText("12"), closeSoftKeyboard());
         onView(withId(R.id.editTextIngredients)).perform(typeText("Alkohol"), closeSoftKeyboard());
-        onView(withId(R.id.imgRecipePic)).
         onView(withId(R.id.editTextinstruction)).perform(typeText("Put some Alkohol into the Bowl"),closeSoftKeyboard());
         onView(withId(R.id.btnUpload)).perform(click());
         sleep(2000);
         intended(hasComponent(StartUI.class.getName()));
     }
-*/
+
 
 }

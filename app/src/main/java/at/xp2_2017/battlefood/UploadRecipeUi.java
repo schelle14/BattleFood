@@ -120,17 +120,17 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
                     Toast.makeText(UploadRecipeUi.this, Constants.RECIPE_INSERT_DATA, Toast.LENGTH_SHORT).show();
                 }else {
 
+                    if(uri != null) {
+                        StorageReference filepath = mStorage.child(Constants.FB_IMAGES).child(picturename + Constants.jpg);
+                        filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                Toast.makeText(UploadRecipeUi.this, Constants.IMAGE_UPLOAD_SUCCESS, Toast.LENGTH_SHORT).show();
+                            }
 
-                    StorageReference filepath = mStorage.child(Constants.FB_IMAGES).child(picturename + Constants.jpg);
-                    filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            Toast.makeText(UploadRecipeUi.this, Constants.IMAGE_UPLOAD_SUCCESS, Toast.LENGTH_SHORT).show();
-                        }
 
-
-                    });
-
+                        });
+                    }
                     addChildRecipe.child(Constants.FB_RECIPE_NAME).setValue(txtRecipeName.getText().toString());
                     addChildRecipe.child(Constants.FB_RECIPE_ADULT).setValue(number_adult.getText().toString());
                     addChildRecipe.child(Constants.FB_RECIPE_CHILD).setValue(number_child.getText().toString());
