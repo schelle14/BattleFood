@@ -18,7 +18,7 @@ public class MenuUI extends AppCompatActivity implements View.OnClickListener {
     public Button buttonRej;
 
     public void init() {
-        buttonHome = (Button)findViewById(R.id.HomeBtn);
+        buttonHome = (Button)findViewById(R.id.btnMenuHome);
         buttonHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
