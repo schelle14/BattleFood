@@ -48,7 +48,7 @@ public class LoginInstrumentedTest {
     @Test
     public void testLoginSuccess() throws Exception {
 
-        onView(withId(R.id.etEmailLogin)).perform(typeText("test1@test.com"), closeSoftKeyboard());
+        onView(withId(R.id.etEmailLogin)).perform(typeText("test3@test.com"), closeSoftKeyboard());
         onView(withId(R.id.etPasswordLogin)).perform(typeText("test123"), closeSoftKeyboard());
         onView(withId(R.id.btnLogin)).perform((click()));
         sleep(5000);
