@@ -135,6 +135,7 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
                     addChildRecipe.child("NumberOfChild").setValue(number_child.getText().toString());
                     addChildRecipe.child("Ingredients").setValue(ingredients.getText().toString());
                     addChildRecipe.child("Instructions").setValue(instructions.getText().toString());
+                    addChildRecipe.child("WorkingTime").setValue(working_time.getText().toString());
                     addChildRecipe.child("NameOfPicture").setValue(addChildRecipe.getKey());
                     Intent toStart = new Intent(UploadRecipeUi.this, StartUI.class);
                     startActivity(toStart);
