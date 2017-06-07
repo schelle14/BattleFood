@@ -7,11 +7,12 @@
     tools:context="at.xp2_2017.battlefood.RegistrationUI">
 
     <Button
-        android:id="@+id/menu"
+        android:id="@+id/menuWRUI"
         style="@style/Widget.AppCompat.Button.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:layout_marginEnd="2dp"
         android:layout_marginRight="2dp"
         android:layout_marginTop="8dp"
         android:backgroundTint="@android:drawable/screen_background_light_transparent"
@@ -28,8 +29,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         tools:layout_constraintBottom_creator="1"
-        tools:layout_constraintRight_creator="1"
-        android:layout_marginEnd="2dp" />
+        tools:layout_constraintRight_creator="1" />
 
     <TextView
         android:id="@+id/textChildContent"
@@ -44,7 +44,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textTimeContent" />
 
     <TextView
-        android:id="@+id/textInstruction"
+        android:id="@+id/textInstructions"
         android:layout_width="74dp"
         android:layout_height="35dp"
         android:text="Instruction:"
@@ -145,7 +145,7 @@
         android:scrollbars="vertical"
         android:text="dfsfI´m a scroll j"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toRightOf="@+id/textInstruction"
+        app:layout_constraintLeft_toRightOf="@+id/textInstructions"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textScrollIncstruct" />
 
