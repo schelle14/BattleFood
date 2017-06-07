@@ -36,7 +36,7 @@ public class VotesUI extends AppCompatActivity{
         setContentView(R.layout.activity_votes_ui);
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        menuButton = (Button) findViewById(R.id.menu);
+        menuButton = (Button) findViewById(R.id.menu_votes);
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
