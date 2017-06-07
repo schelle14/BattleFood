@@ -1,8 +1,6 @@
 package at.xp2_2017.battlefood;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -13,7 +11,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,9 +23,6 @@ public class WatchRecipeUI extends AppCompatActivity {
 
     public DatabaseReference mDatabase;
     public StorageReference mStorage;
-    public ImageView RecipeImg;
-    public FirebaseAuth mAuth;
-    public TextView ingred;
     public String test;
     public Button menuButton;
 
@@ -39,9 +33,6 @@ public class WatchRecipeUI extends AppCompatActivity {
     private TextView instructions;
     private TextView recipe_name;
     private ImageView img_recipe;
-    private TextView txtPictureSelected;
-    private String picturename;
-    private Uri uri;
 
 
     public void init() {
@@ -66,7 +57,14 @@ public class WatchRecipeUI extends AppCompatActivity {
         //Load FB References
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mStorage = FirebaseStorage.getInstance().getReference();
-        String recipe_key = getIntent().getExtras().getString(Constants.KEY_RECIPE);
+        String recipe_key;
+        try {
+            recipe_key = getIntent().getExtras().getString(Constants.KEY_RECIPE);
+        }catch (NullPointerException e){
+            recipe_key = "-Kku8X3FTLEa1gwUfwTy";
+
+        }
+
         DatabaseReference recipeRef = mDatabase.child(Constants.FB_RECIPE).child(recipe_key.substring(0, recipe_key.length()-4));
 
         recipe_name = (TextView) findViewById(R.id.textName);
