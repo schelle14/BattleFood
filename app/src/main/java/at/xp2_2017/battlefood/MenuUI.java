@@ -27,15 +27,6 @@ public class MenuUI extends AppCompatActivity implements View.OnClickListener {
             }
         });
 
-        buttonRej = (Button)findViewById(R.id.buttonRej);
-        buttonRej.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent test_intent = new Intent(MenuUI.this, WatchRecipeUI.class);
-                startActivity(test_intent);
-            }
-        });
-
         buttonWatchVotes = (Button)findViewById(R.id.WatchVotesBtn);
         buttonWatchVotes.setOnClickListener(new View.OnClickListener() {
             @Override
