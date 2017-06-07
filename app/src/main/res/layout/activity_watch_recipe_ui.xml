@@ -12,7 +12,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="2dp"
         android:layout_marginRight="2dp"
         android:layout_marginTop="8dp"
         android:backgroundTint="@android:drawable/screen_background_light_transparent"
@@ -29,7 +28,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         tools:layout_constraintBottom_creator="1"
-        tools:layout_constraintRight_creator="1" />
+        tools:layout_constraintRight_creator="1"
+        android:layout_marginEnd="2dp" />
 
     <TextView
         android:id="@+id/textChildContent"
@@ -44,14 +44,14 @@
         app:layout_constraintTop_toBottomOf="@+id/textTimeContent" />
 
     <TextView
-        android:id="@+id/textInstructions"
+        android:id="@+id/textInstruction"
         android:layout_width="74dp"
         android:layout_height="35dp"
         android:text="Instruction:"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="61dp"
+        android:layout_marginTop="55dp"
         app:layout_constraintTop_toBottomOf="@+id/textIngredients" />
 
     <TextView
@@ -79,14 +79,14 @@
         app:layout_constraintTop_toBottomOf="@+id/textWorktime" />
 
     <TextView
-        android:id="@+id/textIngredients"
-        android:layout_width="74dp"
-        android:layout_height="35dp"
-        android:text="Ingredients:"
-        android:layout_marginStart="8dp"
+        android:id="@+id/textIngredient"
+        android:layout_width="79dp"
+        android:layout_height="32dp"
         android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Ingredients:"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="8dp"
         app:layout_constraintTop_toBottomOf="@+id/textAdult" />
 
     <TextView
@@ -100,26 +100,25 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/textWorktime"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="17dp"
         app:layout_constraintTop_toBottomOf="@+id/ImageViewRecipe"
-        app:layout_constraintHorizontal_bias="0.597" />
+        app:layout_constraintHorizontal_bias="0.382" />
 
     <TextView
-        android:id="@+id/textScrollIncstruct"
+        android:id="@+id/textIngredients"
         android:layout_width="285dp"
         android:layout_height="75dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/common_google_signin_btn_text_light_disabled"
+        android:layout_marginTop="16dp"
         android:fadeScrollbars="false"
         android:scrollbars="vertical"
-        android:text="ghf"
         app:layout_constraintLeft_toRightOf="@+id/textIngredients"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textChild" />
+        app:layout_constraintTop_toBottomOf="@+id/textChild"
+        app:layout_constraintHorizontal_bias="0.0" />
 
     <TextView
         android:id="@+id/textParentContent"
@@ -128,26 +127,26 @@
         android:text="Parent Content"
         android:layout_marginStart="8dp"
         app:layout_constraintLeft_toRightOf="@+id/textAdult"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintTop_toBottomOf="@+id/textWorktime" />
 
     <TextView
-        android:id="@+id/textScrollIngred"
-        android:layout_width="285dp"
-        android:layout_height="75dp"
+        android:id="@+id/textInstructions"
+        android:layout_width="287dp"
+        android:layout_height="126dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
-        android:background="@color/common_google_signin_btn_text_light_disabled"
+        android:layout_marginTop="55dp"
         android:fadeScrollbars="false"
         android:scrollbars="vertical"
-        android:text="dfsfI´m a scroll j"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toRightOf="@+id/textInstructions"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toRightOf="@+id/textInstruction"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textScrollIncstruct" />
+        app:layout_constraintTop_toBottomOf="@+id/textIngredients"
+        tools:layout_editor_absoluteX="116dp"
+        android:layout_marginBottom="8dp" />
 
     <TextView
         android:id="@+id/textWorktime"
@@ -155,9 +154,9 @@
         android:layout_height="35dp"
         android:text="Working time:"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="17dp"
         app:layout_constraintTop_toBottomOf="@+id/ImageViewRecipe" />
 
     <ImageView
@@ -178,18 +177,15 @@
         android:id="@+id/textName"
         android:layout_width="181dp"
         android:layout_height="65dp"
-        android:text="Nüsse"
-        android:textAlignment="center"
-        android:textSize="20pt"
+        android:layout_marginEnd="8dp"
         android:layout_marginLeft="102dp"
-        app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp"
         android:layout_marginStart="102dp"
-        android:layout_marginEnd="8dp" />
+        android:layout_marginTop="16dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>
