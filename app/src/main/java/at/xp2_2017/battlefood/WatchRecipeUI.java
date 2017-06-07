@@ -57,7 +57,14 @@ public class WatchRecipeUI extends AppCompatActivity {
         //Load FB References
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mStorage = FirebaseStorage.getInstance().getReference();
-        String recipe_key = getIntent().getExtras().getString(Constants.KEY_RECIPE);
+        String recipe_key;
+        try {
+            recipe_key = getIntent().getExtras().getString(Constants.KEY_RECIPE);
+        }catch (NullPointerException e){
+            recipe_key = "-Kku8X3FTLEa1gwUfwTy";
+
+        }
+
         DatabaseReference recipeRef = mDatabase.child(Constants.FB_RECIPE).child(recipe_key.substring(0, recipe_key.length()-4));
 
         recipe_name = (TextView) findViewById(R.id.textName);
