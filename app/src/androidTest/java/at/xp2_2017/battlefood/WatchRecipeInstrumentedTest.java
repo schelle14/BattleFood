@@ -2,8 +2,6 @@ package at.xp2_2017.battlefood;
 
 import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -16,9 +14,6 @@ import static android.support.test.espresso.intent.Intents.intended;
 import static android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthProvider;
 
 
 @RunWith(AndroidJUnit4.class)
@@ -35,8 +30,8 @@ public class WatchRecipeInstrumentedTest {
         onView(withId(R.id.textAdult)).check(matches(withText("Adult:")));
         onView(withId(R.id.textChild)).check(matches(withText("Child:")));
         if(onView(withId(R.id.textName)) == null) throw new AssertionError("Error: No name availabe");
-        if(onView(withId(R.id.textScrollIncstruct)) == null) throw new AssertionError("Error: No Instructions availabe");
-        if(onView(withId(R.id.textScrollIngred)) == null) throw new AssertionError("Error: No Ingred availabe");
+        if(onView(withId(R.id.textInstructions)) == null) throw new AssertionError("Error: No Instructions availabe");
+        if(onView(withId(R.id.textIngredients)) == null) throw new AssertionError("Error: No Ingred availabe");
     }
 /*
     @Test
