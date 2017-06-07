@@ -38,10 +38,9 @@ public class UploadRecipeInstrumentedTest {
 
         onView(withText("Select Pic")).perform(click());
     }
-
+/*
     @Test
     public void testPerson() throws Exception {
-
 
         onView(withId(R.id.editTextadult)).perform(typeText("5"),closeSoftKeyboard());
         onView(withId(R.id.editTextadult)).check(matches(withText("5")));
@@ -53,7 +52,7 @@ public class UploadRecipeInstrumentedTest {
         onView(withId(R.id.editTexttime)).check(matches(withText("40")));
 
 
-    }
+    }*/
 
     @Test
     public void testInpputRecipe() throws Exception
@@ -72,7 +71,6 @@ public class UploadRecipeInstrumentedTest {
 
     @Test
     public void testUploadButton() throws Exception {
-
         onView(withText("Upload")).perform(click());
     }
 

@@ -25,7 +25,7 @@ import java.io.Console;
 public class RegistrationUI extends AppCompatActivity implements View.OnClickListener {
 
     private Button btnRegister;
-    //Intent StartUI_Activ;
+    Intent StartUI_Activ;
     private EditText etUsername;
     private EditText etEmail;
     private EditText etPassword;
@@ -64,22 +64,23 @@ public class RegistrationUI extends AppCompatActivity implements View.OnClickLis
         final String password = etPassword.getText().toString().trim();
         final String passwordagain = etPasswordAgain.getText().toString().trim();
 
-        if(!TextUtils.isEmpty(username) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password))
-        {
+        if(!TextUtils.isEmpty(username)
+                && !TextUtils.isEmpty(email)
+                && !TextUtils.isEmpty(password)) {
             mProgress.setMessage(Constants.SIGNING_UP);
             mProgress.show();
 
             mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
-                    if(task.isSuccessful())
-                    {
+                    if (task.isSuccessful()
+                            == true) {
                         //gets de unique Id of current user
                         String user_id = mAuth.getCurrentUser().getUid();
                         DatabaseReference current_user_db = mDatabase.child(user_id);
                         current_user_db.child(Constants.FB_USER_USERNAME).setValue(username);
                         current_user_db.child(Constants.FB_USER_EMAIL).setValue(email);
-                        current_user_db.child(Constants.FB_USER_RECIPEKEY).setValue("");
+                        current_user_db.child(Constants.FB_USER_RECIPEKEY).setValue(";");
                         mProgress.dismiss();
 
                         Intent main = new Intent(RegistrationUI.this, MainActivity.class);

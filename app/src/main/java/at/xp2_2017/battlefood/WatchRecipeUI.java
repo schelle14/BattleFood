@@ -51,7 +51,7 @@ public class WatchRecipeUI extends AppCompatActivity {
 
 
     public void init() {
-        menuButton = (Button)findViewById(R.id.menu);
+        menuButton = (Button)findViewById(R.id.menuWRUI);
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,6 +67,7 @@ public class WatchRecipeUI extends AppCompatActivity {
         setContentView(R.layout.activity_watch_recipe_ui);
 
         init();
+
 
         //Load FB References
         mDatabase = FirebaseDatabase.getInstance().getReference();

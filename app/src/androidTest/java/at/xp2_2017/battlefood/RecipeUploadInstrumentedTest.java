@@ -31,6 +31,7 @@ import static org.junit.Assert.assertEquals;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
+/*
 @RunWith(AndroidJUnit4.class)
 public class RecipeUploadInstrumentedTest {
     @Test
@@ -51,7 +52,8 @@ public class RecipeUploadInstrumentedTest {
         onView(withId(R.id.btnUpload)).check(matches(withText("Upload")));
     }
 
-    @Test
+   /* @Test
+
     public void testUploadSuccess() throws Exception {
         onView(withId(R.id.txtNameRecipe)).perform(typeText("Test Recipe"), closeSoftKeyboard());
         onView(withId(R.id.editTextadult)).perform(typeText("2"), closeSoftKeyboard());
@@ -65,4 +67,4 @@ public class RecipeUploadInstrumentedTest {
     }
 
 
-}
+}*/
