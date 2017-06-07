@@ -33,11 +33,6 @@ public class UploadRecipeInstrumentedTest {
     @Rule
     public ActivityTestRule<UploadRecipeUi> mActivityRule = new ActivityTestRule<>(UploadRecipeUi.class);
 
-    @Test
-    public void testSelectPicButton() throws Exception {
-
-        onView(withText("Select Pic")).perform(click());
-    }
 /*
     @Test
     public void testPerson() throws Exception {

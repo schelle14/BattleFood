@@ -29,7 +29,7 @@ import static java.lang.Thread.sleep;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 
-@RunWith(AndroidJUnit4.class)
+/*@RunWith(AndroidJUnit4.class)
 public class MenuUIInstrumentedTest {
     @Rule
     public IntentsTestRule<MenuUI> SUIActivityRule = new IntentsTestRule<>(MenuUI.class);
@@ -40,4 +40,4 @@ public class MenuUIInstrumentedTest {
         sleep(5000);
         intended(hasComponent(StartUI.class.getName()));
     }
-}
+}*/
