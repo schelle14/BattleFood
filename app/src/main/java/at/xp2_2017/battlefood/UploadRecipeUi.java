@@ -25,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
@@ -82,7 +83,7 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
         init();
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        final DatabaseReference recipeRef = mDatabase.child("Recipe");
+        final DatabaseReference recipeRef = mDatabase.child(Constants.FB_RECIPE);
         mStorage = FirebaseStorage.getInstance().getReference();
 
        final DatabaseReference addChildRecipe = recipeRef.push();
@@ -101,7 +102,7 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onClick(View v) {
                Intent galleryIntent = new Intent(Intent.ACTION_PICK);
-                galleryIntent.setType("image/*");
+                galleryIntent.setType(Constants.FB_IMAGES_STAR);
               //TO get image back
                 startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
             }
@@ -116,27 +117,26 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
                         TextUtils.isEmpty(number_child.getText().toString()) ||
                         TextUtils.isEmpty(ingredients.getText().toString()) || TextUtils.isEmpty(instructions.getText().toString()))
                 {
-                    Toast.makeText(UploadRecipeUi.this, "Please insert all data", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UploadRecipeUi.this, Constants.RECIPE_INSERT_DATA, Toast.LENGTH_SHORT).show();
                 }else {
 
 
-                    StorageReference filepath = mStorage.child("images").child(picturename + ".jpg");
+                    StorageReference filepath = mStorage.child(Constants.FB_IMAGES).child(picturename + Constants.jpg);
                     filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            Toast.makeText(UploadRecipeUi.this, "Image upload success", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(UploadRecipeUi.this, Constants.IMAGE_UPLOAD_SUCCESS, Toast.LENGTH_SHORT).show();
                         }
 
 
                     });
 
-                    addChildRecipe.child("Name").setValue(txtRecipeName.getText().toString());
-                    addChildRecipe.child("NumberOfAdult").setValue(number_adult.getText().toString());
-                    addChildRecipe.child("NumberOfChild").setValue(number_child.getText().toString());
-                    addChildRecipe.child("Ingredients").setValue(ingredients.getText().toString());
-                    addChildRecipe.child("Instructions").setValue(instructions.getText().toString());
-                    addChildRecipe.child("WorkingTime").setValue(working_time.getText().toString());
-                    addChildRecipe.child("NameOfPicture").setValue(addChildRecipe.getKey());
+                    addChildRecipe.child(Constants.FB_RECIPE_NAME).setValue(txtRecipeName.getText().toString());
+                    addChildRecipe.child(Constants.FB_RECIPE_ADULT).setValue(number_adult.getText().toString());
+                    addChildRecipe.child(Constants.FB_RECIPE_CHILD).setValue(number_child.getText().toString());
+                    addChildRecipe.child(Constants.FB_RECIPE_INGREDIENTS).setValue(ingredients.getText().toString());
+                    addChildRecipe.child(Constants.FB_RECIPE_INSTRUCTIONS).setValue(instructions.getText().toString());
+                    addChildRecipe.child(Constants.FB_RECIPE_TIME).setValue(working_time.getText().toString());
                     Intent toStart = new Intent(UploadRecipeUi.this, StartUI.class);
                     startActivity(toStart);
                 }
@@ -191,7 +191,7 @@ public class UploadRecipeUi extends AppCompatActivity implements View.OnClickLis
 
             }
             else
-                Toast.makeText(this, "Unable to open image", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, Constants.UNABLE_OPEN_IMAGE, Toast.LENGTH_LONG).show();
 
     }
 }

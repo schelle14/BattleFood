@@ -60,7 +60,8 @@ public class UploadRecipeInstrumentedTest {
         onView(withId(R.id.editTextinstruction)).perform(typeText("ekrkre" + "\n" + "abc" + "\n" +
                 "abc" + "\n" + "abc" + "\n" + "abc"),closeSoftKeyboard());
         onView(withId(R.id.editTextinstruction)).check(matches(withText("ekrkre" + "\n" + "abc" +
-                "\n" + "abc" + "\n" + "abc" + "\n" + "abc")));
+                "\n" + "abc" + "\n" + "abc" +
+                "\n" + "abc")));
 
     }
 

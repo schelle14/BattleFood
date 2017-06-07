@@ -63,7 +63,7 @@ public class MenuUI extends AppCompatActivity implements View.OnClickListener {
 
                 FirebaseAuth.getInstance().signOut();
                 Intent logout_change = new Intent(MenuUI.this, Login.class);
-                Toast.makeText(MenuUI.this, "¯\\_(ツ)_/¯", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MenuUI.this, Constants.LOGOUT_MESSAGE, Toast.LENGTH_SHORT).show();
                 startActivity(logout_change);
             }
 

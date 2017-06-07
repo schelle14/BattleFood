@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:layout_marginEnd="2dp"
         android:layout_marginRight="2dp"
         android:layout_marginTop="8dp"
         android:backgroundTint="@android:drawable/screen_background_light_transparent"
@@ -28,13 +29,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         tools:layout_constraintBottom_creator="1"
-        tools:layout_constraintRight_creator="1"
-        android:layout_marginEnd="2dp" />
+        tools:layout_constraintRight_creator="1" />
 
     <ImageView
         android:id="@+id/meal_image"
-        android:layout_width="319dp"
-        android:layout_height="243dp"
+        android:layout_width="273dp"
+        android:layout_height="223dp"
         android:layout_marginBottom="156dp"
         android:layout_marginTop="167dp"
         app:layout_constraintBottom_toBottomOf="@+id/txtIngredients"
@@ -45,7 +45,8 @@
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1"
         tools:layout_constraintTop_creator="1"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.507" />
 
     <TextView
         android:id="@+id/txtIngredients"
