@@ -51,13 +51,6 @@ public class WatchRecipeInstrumentedTest {
 //    }
 
 
-
-//    @Test
-//    public void testTex1t() throws Exception {
-//        onView(withId(R.id.textWorktime)).check(matches(withText("Working time::")));
-//
-//    }
-
     @Test
     public void testText() throws Exception {
         final FirebaseAuth mauth;
@@ -71,8 +64,8 @@ public class WatchRecipeInstrumentedTest {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-
-                        onView(withId(R.id.textWorktime)).check(matches(withText("Working time::")));
+                        onView(withId(R.id.textWorktime)).check(matches(withText("Working time:")));
+                        onView(withId(R.id.textTimeContent)).check(matches(withText("18")));
                     }
                 }
             });
