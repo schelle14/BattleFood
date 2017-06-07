@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -51,69 +50,77 @@ public class StartUI extends AppCompatActivity implements View.OnClickListener {
         mAuth = FirebaseAuth.getInstance();
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if(user != null)
+        {
+            mDatabase.child(Constants.FB_USER+"/"+user.getUid()+"/"+Constants.FB_USER_RECIPEKEY).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
 
-        mDatabase.child(Constants.FB_USER+"/"+user.getUid()+"/"+Constants.FB_USER_RECIPEKEY).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+                    final List<String> recipes = Arrays.asList(dataSnapshot.getValue().toString().split(";"));
 
-                final List<String> recipes = Arrays.asList(dataSnapshot.getValue().toString().split(";"));
+                    mDatabase.child(Constants.FB_RECIPE).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
 
-                mDatabase.child(Constants.FB_RECIPE).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
+                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                if (!recipes.contains(snapshot.getKey()+ Constants.jpg)) {
+                                    unvoted_recipes.add(snapshot.getKey());
+                                }
+                            }
 
-                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            if (!recipes.contains(snapshot.getKey()+ Constants.jpg)) {
-                                unvoted_recipes.add(snapshot.getKey());
+                            if (unvoted_recipes.size() < 2) {
+                                Toast.makeText(StartUI.this, Constants.NOT_ENOUGH_RECIPES, Toast.LENGTH_SHORT).show();
+
+                                Intent menu_intent = new Intent(StartUI.this, MenuUI.class);
+                                startActivity(menu_intent);
+                            }
+                            else {
+                                //Shuffle list to random values
+                                long seed = System.nanoTime();
+                                Collections.shuffle(unvoted_recipes, new Random(seed));
+
+                                image_reference_1 = mStorage.child(Constants.FB_IMAGES+"/" + unvoted_recipes.get(0)+Constants.jpg);
+                                image_reference_2 = mStorage.child(Constants.FB_IMAGES+"/" + unvoted_recipes.get(1)+Constants.jpg);
+
+                                image_reference_1.getBytes(Constants.MEGABYTE*10).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                                    @Override
+                                    public void onSuccess(byte[] bytes) {
+
+                                        final Bitmap bmp_1 = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                                        image_reference_2.getBytes(Constants.MEGABYTE*10).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                                            @Override
+                                            public void onSuccess(byte[] bytes) {
+                                                Bitmap bmp_2 = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+
+                                                foodImageButtonTop.setImageBitmap(Bitmap.createScaledBitmap(bmp_1, foodImageButtonTop.getWidth(),
+                                                        foodImageButtonTop.getHeight(), false));
+
+                                                foodImageButtonBot.setImageBitmap(Bitmap.createScaledBitmap(bmp_2, foodImageButtonBot.getWidth(),
+                                                        foodImageButtonBot.getHeight(), false));
+                                            }
+                                        });
+                                    }
+                                });
                             }
                         }
 
-                        if (unvoted_recipes.size() < 2) {
-                            Toast.makeText(StartUI.this, Constants.NOT_ENOUGH_RECIPES, Toast.LENGTH_SHORT).show();
-
-                            Intent menu_intent = new Intent(StartUI.this, MenuUI.class);
-                            startActivity(menu_intent);
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
                         }
-                        else {
-                            //Shuffle list to random values
-                            long seed = System.nanoTime();
-                            Collections.shuffle(unvoted_recipes, new Random(seed));
+                    });
+                }
 
-                            image_reference_1 = mStorage.child(Constants.FB_IMAGES+"/" + unvoted_recipes.get(0)+Constants.jpg);
-                            image_reference_2 = mStorage.child(Constants.FB_IMAGES+"/" + unvoted_recipes.get(1)+Constants.jpg);
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                }
+            });
+        }
+        else
+        {
+            Intent login = new Intent(StartUI.this, Login.class);
+            startActivity(login);
+        }
 
-                            image_reference_1.getBytes(Constants.MEGABYTE*10).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-                                @Override
-                                public void onSuccess(byte[] bytes) {
-
-                                    final Bitmap bmp_1 = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                                    image_reference_2.getBytes(Constants.MEGABYTE*10).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-                                        @Override
-                                        public void onSuccess(byte[] bytes) {
-                                            Bitmap bmp_2 = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-
-                                            foodImageButtonTop.setImageBitmap(Bitmap.createScaledBitmap(bmp_1, foodImageButtonTop.getWidth(),
-                                                    foodImageButtonTop.getHeight(), false));
-
-                                            foodImageButtonBot.setImageBitmap(Bitmap.createScaledBitmap(bmp_2, foodImageButtonBot.getWidth(),
-                                                    foodImageButtonBot.getHeight(), false));
-                                        }
-                                    });
-                                }
-                            });
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                    }
-                });
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
 
         menuButton = (Button)findViewById(R.id.menuSUI);
         menuButton.setOnClickListener(new View.OnClickListener() {

@@ -27,16 +27,7 @@ public class MenuUI extends AppCompatActivity implements View.OnClickListener {
             }
         });
 
-        buttonRej = (Button)findViewById(R.id.buttonRej);
-        buttonRej.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent test_intent = new Intent(MenuUI.this, WatchRecipeUI.class);
-                startActivity(test_intent);
-            }
-        });
-
-        buttonWatchVotes = (Button)findViewById(R.id.WatchVotesBtn);
+        buttonWatchVotes = (Button)findViewById(R.id.btnWatchVotes);
         buttonWatchVotes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,7 +37,7 @@ public class MenuUI extends AppCompatActivity implements View.OnClickListener {
 
         });
 
-        buttonUploadRecipe = (Button)findViewById(R.id.RecipeUpload);
+        buttonUploadRecipe = (Button)findViewById(R.id.btnRecipeUpload);
         buttonUploadRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,14 +47,14 @@ public class MenuUI extends AppCompatActivity implements View.OnClickListener {
 
         });
 
-        buttonLogout = (Button)findViewById(R.id.Logout);
+        buttonLogout = (Button)findViewById(R.id.btnLogout);
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 FirebaseAuth.getInstance().signOut();
                 Intent logout_change = new Intent(MenuUI.this, Login.class);
-                Toast.makeText(MenuUI.this, "¯\\_(ツ)_/¯", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MenuUI.this, Constants.LOGOUT_MESSAGE, Toast.LENGTH_SHORT).show();
                 startActivity(logout_change);
             }
 
