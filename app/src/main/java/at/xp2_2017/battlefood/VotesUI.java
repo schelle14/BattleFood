@@ -41,25 +41,25 @@ public class VotesUI extends AppCompatActivity{
             @Override
             public void onClick(View v) {
 
-                Intent menu_change = new Intent(VotesUI.this, MenuUI.class);
-                startActivity(menu_change);
+                Intent menu_intent = new Intent(VotesUI.this, MenuUI.class);
+                startActivity(menu_intent);
             }
         });
 
         mDatabase.child(Constants.FB_USER+"/"+ FirebaseAuth.getInstance().getCurrentUser().getUid()+"/"+Constants.FB_USER_RECIPEKEY).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                List<String> recipes = Arrays.asList(dataSnapshot.getValue().toString().split(";"));
+                final List<String> recipes = Arrays.asList(dataSnapshot.getValue().toString().split(";"));
                 GridView gridview = (GridView) findViewById(R.id.gridview);
                 gridview.setAdapter(new ImageAdapter(getApplicationContext(), recipes));
 
                 gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                        // Toast.makeText(VotesUI.this, "" + position, Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(getApplicationContext(), RecipeUI.class);
+
+                        Intent watch_recipe_intent = new Intent(getApplicationContext(), WatchRecipeUI.class);
                         // Pass image index
-                        i.putExtra("id", position);
-                        startActivity(i);
+                        watch_recipe_intent.putExtra(Constants.KEY_RECIPE, recipes.get(position));
+                        startActivity(watch_recipe_intent);
                     }
                 });
             }

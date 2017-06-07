@@ -39,13 +39,9 @@ public class ImageAdapter extends BaseAdapter {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mStorage = FirebaseStorage.getInstance().getReference();
         mRecipes = recipes;
-        Log.d("ImageAdapter: ", mRecipes.toString());
     }
 
-    public int getCount() {
-        Log.d("getCount: ", String.valueOf(mRecipes.size()));
-        return mRecipes.size();
-    }
+    public int getCount() { return mRecipes.size(); }
 
     public Object getItem(int position) {
         return null;
@@ -68,7 +64,7 @@ public class ImageAdapter extends BaseAdapter {
         } else {
             imageView = (ImageView) convertView;
         }
-        Log.d("Imagename: ", Constants.FB_IMAGES+"/"+mRecipes.get(position));
+
         mStorage.child(Constants.FB_IMAGES+"/"+mRecipes.get(position)).getBytes(Constants.MEGABYTE*10).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {
